@@ -23,11 +23,12 @@ const Swap = () => {
         console.log("🚀 ~ file: Swap.jsx ~ line 20 ~ connectWal ~ address", address)
     }
     return (
-            <Stack bgColor={'#23242A'} h={'80vh'} w={'30%'} borderRadius="2xl" justify={'space-between'} pb={'6'} px={'2'}>
+        <Stack align={'center'} justify={'center'}>
+            <Stack bgColor={'#23242A'} h={'80vh'} w={'fit-content'} borderRadius="2xl" justify={'space-between'} pb={'6'} px={'2'}>
                 <Stack>
                     {/* Header */}
                     <Stack direction={'row'} alignItems='center' w={'100%'} justify={'space-between'} px={'2'} py={'2'}>
-                        <Img src={pfplogo} boxSize={'12'} objectFit={'cover'} />
+                        <Img src={pfplogo} boxSize={{ base: '6', lg: '12' }} objectFit={'cover'} />
                         <HStack>
                             <SelectCurrency />
                             <Button
@@ -37,6 +38,7 @@ const Swap = () => {
                                 borderRadius={'2xl'}
                                 _hover={{ border: '1px solid rgba(49, 95, 154, 0.44)', color: 'rgb(57, 130, 231)' }}
                                 onClick={() => connectWallet()}
+                                size={{ base: 'sm', lg: 'md' }}
                             >
                                 {useraddress ? (
                                     <Text
@@ -51,6 +53,7 @@ const Swap = () => {
                                         textOverflow={'ellipsis'}
                                         overflow={'hidden'}
                                         w={'fit-content'}
+                                        fontSize={'xs'}
                                     >
                                         Connect Wallet
                                     </Text>
@@ -150,6 +153,7 @@ const Swap = () => {
                     <Button _hover={{}} bg='rgb(33, 36, 41)' width={'full'} color={'white'} fontWeight='600' size='md' rounded={'xl'} >Buy</Button>
                 </Stack>
             </Stack>
+        </Stack>
     )
 }
 

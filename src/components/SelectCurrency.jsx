@@ -7,11 +7,11 @@ import { IconOption, IconValue } from './IconOption';
 const customStyles = {
     control: base => ({
         ...base,
-        minWidth: 100,
-        width: 100,
+        minWidth: 50,
+        width: 70,
+        height: 10,
         borderRadius: '15px',
         backgroundColor: '#000000e3',
-
     }),
 };
 const options = [
