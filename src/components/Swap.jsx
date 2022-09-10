@@ -9,6 +9,7 @@ import { MdDashboard, MdLanguage } from 'react-icons/md'
 import { AiOutlineTwitter, AiOutlineYoutube } from 'react-icons/ai'
 import { FaTelegramPlane } from 'react-icons/fa'
 import { CgNotes } from 'react-icons/cg'
+// import ABI from '../Contract/Contract_ABI.json'
 
 
 
@@ -20,6 +21,7 @@ const Swap = () => {
     const connectWallet = async () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const address = await provider.send("eth_requestAccounts", []);
+
         setUseraddress(address)
         console.log("🚀 ~ file: Swap.jsx ~ line 20 ~ connectWal ~ address", address)
     }
@@ -141,7 +143,7 @@ const Swap = () => {
                             </Stack>
                             <Button onClick={() => connectWallet()} bgColor={'rgba(21, 61, 111, 0.44)'} color={'rgb(80, 144, 234)'} _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }} borderRadius={'2xl'} size={'lg'}>
                                 {useraddress ?
-                                    "Swap"
+                                    "Buy"
                                     :
                                     "Connect Wallet"
                                 }
@@ -149,11 +151,12 @@ const Swap = () => {
                         </Stack>
                     </Stack>
                 </Stack>
-                <Stack rounded={'2xl'} py={'1'} px={'1'} alignSelf={'center'} w={'30%'} bgColor={'#191B1F'} alignItems={'center'}>
+                {/*<Stack rounded={'2xl'} py={'1'} px={'1'} alignSelf={'center'} w={'30%'} bgColor={'#191B1F'} alignItems={'center'}>
                     <Button _hover={{}} bg='rgb(33, 36, 41)' width={'full'} color={'white'} fontWeight='600' size='md' rounded={'xl'} >Buy</Button>
-                </Stack>
+                            </Stack>*/}
             </Stack>
-        </Stack>
+            <iframe title="Crypto Currencies" src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=100&pref_coin_id=1505&graph=yes" height="700px" width="90%"></iframe>
+            </Stack>
     )
 }
 
