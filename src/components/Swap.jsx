@@ -1,9 +1,8 @@
-import { Button, HStack, IconButton, Img, Input, Link, Menu, MenuButton, MenuItem, MenuList, Stack, Text } from '@chakra-ui/react'
+import { Button, HStack, IconButton, Img, Input, Menu, MenuButton, MenuItem, MenuList, Stack, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { ethers } from "ethers";
 import pfplogo from '../assets/images/pfplogo.png'
 import eth from '../assets/images/eth.png'
-import { FiSettings } from 'react-icons/fi'
 import SelectCurrency from './SelectCurrency'
 import { BsArrowDownShort, BsChevronDown, BsThreeDots } from 'react-icons/bs'
 import { MdDashboard, MdLanguage } from 'react-icons/md'
@@ -12,8 +11,10 @@ import { FaTelegramPlane } from 'react-icons/fa'
 import { CgNotes } from 'react-icons/cg'
 
 
+
 const Swap = () => {
     const [useraddress, setUseraddress] = useState()
+
     var val1 = 0.0, val2 = 0.0
     var currentValue1 = 1710, balance = 0
     const connectWallet = async () => {
