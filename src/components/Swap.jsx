@@ -113,7 +113,7 @@ const Swap = () => {
                                 <Stack bgColor={'#23242A'} minH={'20'} border={'none !important'} borderRadius={'2xl'} color={'#B2B9D2'} px={'6'} py={'2'}>
                                     <HStack fontWeight={'bold'}>
                                         <Input value={val1} variant={'unstyled'} />
-                                        <HStack as={Button} rightIcon={<BsChevronDown />} minW={'auto'} borderRadius={'2xl'} bgColor={'rgb(44, 47, 54)'} boxShadow={'rgb(0 0 0 / 8%) 0px 6px 10px'} _hover={{ bgColor: 'rgb(64, 68, 79)' }} spacing={'4'} px={'6'}>
+                                        <HStack as={Button} minW={'auto'} borderRadius={'2xl'} bgColor={'rgb(44, 47, 54)'} boxShadow={'rgb(0 0 0 / 8%) 0px 6px 10px'} _hover={{ bgColor: 'rgb(64, 68, 79)' }} spacing={'4'} px={'6'}>
                                             <Img src={eth} w={'6'} />
                                             <Text>ETH</Text>
                                         </HStack>
@@ -133,9 +133,9 @@ const Swap = () => {
                                 <Stack bgColor={'#23242A'} minH={'20'} border={'none !important'} borderRadius={'2xl'} color={'#B2B9D2'} px={'6'} py={'2'}>
                                     <HStack fontWeight={'bold'}>
                                         <Input value={val2} variant={'unstyled'} />
-                                        <HStack as={Button} rightIcon={<BsChevronDown />} minW={'auto'} borderRadius={'2xl'} bgColor={'rgb(44, 47, 54)'} boxShadow={'rgb(0 0 0 / 8%) 0px 6px 10px'} _hover={{ bgColor: 'rgb(64, 68, 79)' }} spacing={'4'} px={'6'}>
+                                        <HStack as={Button} minW={'auto'} borderRadius={'2xl'} bgColor={'rgb(44, 47, 54)'} boxShadow={'rgb(0 0 0 / 8%) 0px 6px 10px'} _hover={{ bgColor: 'rgb(64, 68, 79)' }} spacing={'4'} px={'6'}>
                                             <Img src={pfplogo} boxSize={'6'} />
-                                            <Text>ETH</Text>
+                                            <Text>PFP</Text>
                                         </HStack>
                                     </HStack>
                                     <HStack justify={'space-between'}>
@@ -144,6 +144,7 @@ const Swap = () => {
                                     </HStack>
                                 </Stack>
                             </Stack>
+                            <Text color={'white'} p={'2'}>1 PFP = 0.000020 ETH</Text>
                             <Button onClick={() => connectWallet()} bgColor={'rgba(21, 61, 111, 0.44)'} color={'rgb(80, 144, 234)'} _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }} borderRadius={'2xl'} size={'lg'}>
                                 {useraddress ?
                                     "Buy"
