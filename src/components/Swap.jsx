@@ -1,21 +1,19 @@
-import { Button, HStack, IconButton, Img, Input, Menu, MenuButton, MenuItem, MenuList, Stack, Text } from '@chakra-ui/react'
+import { Button, HStack, IconButton, Img, Input, Link, Menu, MenuButton, MenuItem, MenuList, Stack, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { ethers } from "ethers";
 import pfplogo from '../assets/images/coin.png'
 import eth from '../assets/images/eth.png'
 import SelectCurrency from './SelectCurrency'
 import { BsArrowDownShort, BsChevronDown, BsThreeDots } from 'react-icons/bs'
-import { MdDashboard, MdLanguage } from 'react-icons/md'
 import { AiOutlineTwitter, AiOutlineYoutube } from 'react-icons/ai'
 import { FaTelegramPlane } from 'react-icons/fa'
-import { CgNotes } from 'react-icons/cg'
+import { useNavigate } from 'react-router';
 // import ABI from '../Contract/Contract_ABI.json'
 
 
 
 const Swap = () => {
     const [useraddress, setUseraddress] = useState()
-
     var val1 = 0.0, val2 = 0.0
     var currentValue1 = 1710, balance = 0
     const connectWallet = async () => {
@@ -43,24 +41,26 @@ const Swap = () => {
                                 onClick={() => connectWallet()}
                                 size={{ base: 'sm', lg: 'md' }}
                             >
-                                {useraddress ? (
-                                    <Text
-                                        textOverflow={'ellipsis 3ch;'}
-                                        overflow={'hidden'}
-                                        w={'14'}
-                                    >
-                                        {useraddress}
-                                    </Text>
-                                ) : (
-                                    <Text
-                                        textOverflow={'ellipsis'}
-                                        overflow={'hidden'}
-                                        w={'fit-content'}
-                                        fontSize={'xs'}
-                                    >
-                                        Connect Wallet
-                                    </Text>
-                                )}
+                                {useraddress ?
+                                    (
+
+                                        <Text
+                                            textOverflow={'ellipsis 3ch;'}
+                                            overflow={'hidden'}
+                                            w={'14'}
+                                        >
+                                            {useraddress}
+                                        </Text>
+                                    ) : (
+                                        <Text
+                                            textOverflow={'ellipsis'}
+                                            overflow={'hidden'}
+                                            w={'fit-content'}
+                                            fontSize={'xs'}
+                                        >
+                                            Connect Wallet
+                                        </Text>
+                                    )}
 
 
                             </Button>
@@ -99,6 +99,9 @@ const Swap = () => {
                                 </MenuList>
                             </Menu>
                         </HStack>
+                    </Stack>
+                    <Stack px={'2'}>
+                        <Button as={Link} href='https://pfptoken.netlify.app/' px={'2'} py={'2'} bgColor={'rgba(21, 61, 111, 0.44)'} color={'rgb(80, 144, 234)'} _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }} borderRadius={'2xl'}> Dashboard</Button>
                     </Stack>
                     {/* Swap Converter */}
                     <Stack px={'2'}>
@@ -158,7 +161,7 @@ const Swap = () => {
                     <Button _hover={{}} bg='rgb(33, 36, 41)' width={'full'} color={'white'} fontWeight='600' size='md' rounded={'xl'} >Buy</Button>
                             </Stack>*/}
             </Stack>
-        </Stack>
+        </Stack >
     )
 }
 

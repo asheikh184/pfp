@@ -6,7 +6,7 @@ import png1 from '../assets/images/PNG-1.png'
 const BalanceCard = ({ balance, validDate, cardHolder, img }) => {
     return (
         <>
-            <Stack bgImage={card1} justify={'space-between'} bgPos={'center'} bgSize={'cover'} h={'56'} w={'23rem'} borderRadius={'lg'} p={'8'} color={'white'}>
+            <Stack bgImage={card1} justify={'space-between'} bgPos={'center'} bgSize={'cover'} h={'56'} w={{lg:'23rem'}} borderRadius={'lg'} p={'8'} color={'white'}>
                 <Stack spacing={'-1'}>
                     <Text>Main Balance</Text>
                     <HStack justify={'space-between'}>

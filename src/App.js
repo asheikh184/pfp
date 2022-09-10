@@ -13,8 +13,8 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Stack bgColor={'#F7F7F7'}>
-        <Stack direction={'row'} p={'8'} >
-          <Grid templateColumns={{ base: 'repeat(1,fr)', lg: 'repeat(2, 1fr)' }} gap={2}>
+        <Stack direction={{ base: 'column', lg: 'row' }} p={'8'} >
+          <Grid templateColumns={{ lg: 'repeat(2, 1fr)' }} gap={2}>
             <BalanceCard />
             <BalanceCard />
             <BalanceCard />
