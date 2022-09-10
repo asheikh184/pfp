@@ -1,7 +1,7 @@
 import { Button, HStack, IconButton, Img, Input, Link, Menu, MenuButton, MenuItem, MenuList, Stack, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { ethers } from "ethers";
-import pfplogo from '../assets/images/pfplogo.png'
+import pfplogo from '../assets/images/coin.png'
 import eth from '../assets/images/eth.png'
 import { FiSettings } from 'react-icons/fi'
 import SelectCurrency from './SelectCurrency'
@@ -76,24 +76,23 @@ const Swap = () => {
                                     _active={{}}
                                 />
                                 <MenuList bgColor={'#212429'} border={'none'} borderRadius={'2xl'}>
-                                    <MenuItem as={Button} rightIcon={<MdDashboard />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
-                                        HEX Dashboard
-                                    </MenuItem>
+                                    
                                     <MenuItem as={Button} rightIcon={<AiOutlineTwitter />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
-                                        HEX Twitter
+                                        PFP Twitter
                                     </MenuItem>
                                     <MenuItem as={Button} rightIcon={<AiOutlineYoutube />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
-                                        HEX Videos
+                                        PFP Discord
                                     </MenuItem>
                                     <MenuItem as={Button} rightIcon={<FaTelegramPlane />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
-                                        HEX Telegram
+                                        PFP Telegram
                                     </MenuItem>
-                                    <MenuItem as={Button} rightIcon={<MdLanguage />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
+
+                                   {/* <MenuItem as={Button} rightIcon={<MdLanguage />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
                                         Language
                                     </MenuItem>
                                     <MenuItem as={Button} rightIcon={<CgNotes />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
                                         Legal and Privacy
-                                    </MenuItem>
+                                </MenuItem> */}
                                 </MenuList>
                             </Menu>
                         </HStack>
