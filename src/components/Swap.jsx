@@ -43,7 +43,7 @@ const Swap = () => {
                             >
                                 {useraddress ? (
                                     <Text
-                                        textOverflow={'ellipsis'}
+                                        textOverflow={'ellipsis 3ch;'}
                                         overflow={'hidden'}
                                         w={'14'}
                                     >
@@ -142,7 +142,7 @@ const Swap = () => {
                             </Stack>
                             <Button onClick={() => connectWallet()} bgColor={'rgba(21, 61, 111, 0.44)'} color={'rgb(80, 144, 234)'} _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }} borderRadius={'2xl'} size={'lg'}>
                                 {useraddress ?
-                                    "Swap"
+                                    "Buy"
                                     :
                                     "Connect Wallet"
                                 }
@@ -150,9 +150,9 @@ const Swap = () => {
                         </Stack>
                     </Stack>
                 </Stack>
-                <Stack rounded={'2xl'} py={'1'} px={'1'} alignSelf={'center'} w={'30%'} bgColor={'#191B1F'} alignItems={'center'}>
+                {/* <Stack rounded={'2xl'} py={'1'} px={'1'} alignSelf={'center'} w={'30%'} bgColor={'#191B1F'} alignItems={'center'}>
                     <Button _hover={{}} bg='rgb(33, 36, 41)' width={'full'} color={'white'} fontWeight='600' size='md' rounded={'xl'} >Buy</Button>
-                </Stack>
+                </Stack> */}
             </Stack>
         </Stack>
     )
