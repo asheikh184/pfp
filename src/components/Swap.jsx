@@ -1,7 +1,7 @@
 import { Button, HStack, IconButton, Img, Input, Menu, MenuButton, MenuItem, MenuList, Stack, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { ethers } from "ethers";
-import pfplogo from '../assets/images/pfplogo.png'
+import pfplogo from '../assets/images/coin.png'
 import eth from '../assets/images/eth.png'
 import SelectCurrency from './SelectCurrency'
 import { BsArrowDownShort, BsChevronDown, BsThreeDots } from 'react-icons/bs'
@@ -9,6 +9,7 @@ import { MdDashboard, MdLanguage } from 'react-icons/md'
 import { AiOutlineTwitter, AiOutlineYoutube } from 'react-icons/ai'
 import { FaTelegramPlane } from 'react-icons/fa'
 import { CgNotes } from 'react-icons/cg'
+// import ABI from '../Contract/Contract_ABI.json'
 
 
 
@@ -20,6 +21,7 @@ const Swap = () => {
     const connectWallet = async () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const address = await provider.send("eth_requestAccounts", []);
+
         setUseraddress(address)
         console.log("🚀 ~ file: Swap.jsx ~ line 20 ~ connectWal ~ address", address)
     }
@@ -77,24 +79,23 @@ const Swap = () => {
                                     _active={{}}
                                 />
                                 <MenuList bgColor={'#212429'} border={'none'} borderRadius={'2xl'}>
-                                    <MenuItem as={Button} rightIcon={<MdDashboard />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
-                                        HEX Dashboard
-                                    </MenuItem>
+
                                     <MenuItem as={Button} rightIcon={<AiOutlineTwitter />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
-                                        HEX Twitter
+                                        PFP Twitter
                                     </MenuItem>
                                     <MenuItem as={Button} rightIcon={<AiOutlineYoutube />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
-                                        HEX Videos
+                                        PFP Discord
                                     </MenuItem>
                                     <MenuItem as={Button} rightIcon={<FaTelegramPlane />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
-                                        HEX Telegram
+                                        PFP Telegram
                                     </MenuItem>
-                                    <MenuItem as={Button} rightIcon={<MdLanguage />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
+
+                                    {/* <MenuItem as={Button} rightIcon={<MdLanguage />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
                                         Language
                                     </MenuItem>
                                     <MenuItem as={Button} rightIcon={<CgNotes />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
                                         Legal and Privacy
-                                    </MenuItem>
+                                </MenuItem> */}
                                 </MenuList>
                             </Menu>
                         </HStack>
@@ -153,6 +154,9 @@ const Swap = () => {
                 {/* <Stack rounded={'2xl'} py={'1'} px={'1'} alignSelf={'center'} w={'30%'} bgColor={'#191B1F'} alignItems={'center'}>
                     <Button _hover={{}} bg='rgb(33, 36, 41)' width={'full'} color={'white'} fontWeight='600' size='md' rounded={'xl'} >Buy</Button>
                 </Stack> */}
+                {/*<Stack rounded={'2xl'} py={'1'} px={'1'} alignSelf={'center'} w={'30%'} bgColor={'#191B1F'} alignItems={'center'}>
+                    <Button _hover={{}} bg='rgb(33, 36, 41)' width={'full'} color={'white'} fontWeight='600' size='md' rounded={'xl'} >Buy</Button>
+                            </Stack>*/}
             </Stack>
         </Stack>
     )
