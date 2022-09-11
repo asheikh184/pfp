@@ -6,7 +6,10 @@ import {
   theme,
 } from '@chakra-ui/react';
 import Swap from './components/Swap';
-import BalanceCard from './components/BalanceCard';
+import PFPBalanceCard from './components/PFPBalanceCard';
+import BNBBalanceCard from './components/BNBBalanceCard';
+import WBTCBalanceCard from './components/WBTCBalanceCard';
+import USDTBalanceCard from './components/USDTBalanceCard';
 
 
 function App() {
@@ -15,10 +18,10 @@ function App() {
       <Stack bgColor={'#F7F7F7'}>
         <Stack direction={{ base: 'column', lg: 'row' }} p={'8'} >
           <Grid templateColumns={{ lg: 'repeat(2, 1fr)' }} gap={2}>
-            <BalanceCard />
-            <BalanceCard />
-            <BalanceCard />
-            <BalanceCard />
+            <PFPBalanceCard />
+            <BNBBalanceCard />
+            <WBTCBalanceCard />
+            <USDTBalanceCard />
           </Grid>
           <Swap />
         </Stack>

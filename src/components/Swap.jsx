@@ -2,12 +2,12 @@ import { Button, HStack, IconButton, Img, Input, Link, Menu, MenuButton, MenuIte
 import React, { useState } from 'react'
 import { ethers } from "ethers";
 import pfplogo from '../assets/images/coin.png'
-import eth from '../assets/images/eth.png'
+import bnb from '../assets/images/bnb.png'
 import SelectCurrency from './SelectCurrency'
-import { BsArrowDownShort, BsChevronDown, BsThreeDots } from 'react-icons/bs'
+import { BsArrowDownShort,  BsThreeDots } from 'react-icons/bs'
 import { AiOutlineTwitter, AiOutlineYoutube } from 'react-icons/ai'
 import { FaTelegramPlane } from 'react-icons/fa'
-import { useNavigate } from 'react-router';
+// import { useNavigate } from 'react-router';
 // import ABI from '../Contract/Contract_ABI.json'
 
 
@@ -101,21 +101,21 @@ const Swap = () => {
                         </HStack>
                     </Stack>
                     <Stack px={'2'}>
-                        <Button as={Link} href='https://pfptoken.netlify.app/' px={'2'} py={'2'} bgColor={'rgba(21, 61, 111, 0.44)'} color={'rgb(80, 144, 234)'} _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }} borderRadius={'2xl'}> Dashboard</Button>
+                        <Button as={Link} href='https://pfptoken.netlify.app/' px={'2'} py={'2'} bgColor={'rgba(21, 61, 111, 0.44)'} color={'rgb(80, 144, 234)'} _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }} borderRadius={'2xl'}> Back To Hompage</Button>
                     </Stack>
                     {/* Swap Converter */}
                     <Stack px={'2'}>
                         <Stack bgColor={'#191B1F'} borderRadius={'2xl'} px="3" py={'4'} h={'auto'}>
                             <HStack color={'white'} px={'3'} justify={"space-between"}>
-                                <Text fontWeight={'bold'}>Swap</Text>
+                                <Text fontWeight={'bold'}>Buy PFP</Text>
                             </HStack>
                             <Stack spacing={'-3'}>
                                 <Stack bgColor={'#23242A'} minH={'20'} border={'none !important'} borderRadius={'2xl'} color={'#B2B9D2'} px={'6'} py={'2'}>
                                     <HStack fontWeight={'bold'}>
                                         <Input value={val1} variant={'unstyled'} />
                                         <HStack as={Button} minW={'auto'} borderRadius={'2xl'} bgColor={'rgb(44, 47, 54)'} boxShadow={'rgb(0 0 0 / 8%) 0px 6px 10px'} _hover={{ bgColor: 'rgb(64, 68, 79)' }} spacing={'4'} px={'6'}>
-                                            <Img src={eth} w={'6'} />
-                                            <Text>ETH</Text>
+                                            <Img src={bnb} w={'6'} />
+                                            <Text>BNB</Text>
                                         </HStack>
                                     </HStack>
                                     <HStack justify={'space-between'}>
@@ -144,7 +144,7 @@ const Swap = () => {
                                     </HStack>
                                 </Stack>
                             </Stack>
-                            <Text color={'white'} p={'2'}>1 PFP = 0.000020 ETH</Text>
+                            <Text color={'white'} p={'2'}>1 PFP = 0.00014 BNB (Presale Price)</Text>
                             <Button onClick={() => connectWallet()} bgColor={'rgba(21, 61, 111, 0.44)'} color={'rgb(80, 144, 234)'} _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }} borderRadius={'2xl'} size={'lg'}>
                                 {useraddress ?
                                     "Buy"

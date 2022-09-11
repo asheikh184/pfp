@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import eth from '../assets/images/eth.png';
-import btc from '../assets/images/btc.png';
+import bnb from '../assets/images/bnb.png';
+import usdt from '../assets/images/usdt.png';
 import wbtc from '../assets/images/wbtc.png';
 import { Button, HStack, Img, Menu, MenuButton, MenuItem, MenuList, Text } from '@chakra-ui/react';
 import { GoPrimitiveDot } from 'react-icons/go';
@@ -8,7 +8,7 @@ import { BsChevronDown } from 'react-icons/bs';
 
 
 export default function App() {
-    const [option, setOption] = useState(eth)
+    const [option, setOption] = useState(bnb)
 
     return (
         <Menu>
@@ -17,11 +17,11 @@ export default function App() {
             </MenuButton>
             <MenuList borderRadius={'2xl'} bgColor={'#191B1F'} p={'4'} color={'#B2B9D2'} border={'none'}>
                 <Text>Select a Network</Text>
-                <MenuItem px={'0 !important'} _hover={{ bgColor: 'transparent' }} _focus={{ bgColor: 'transparent' }} _active={{ bgColor: 'transparent' }} onClick={() => setOption(eth)}>
+                <MenuItem px={'0 !important'} _hover={{ bgColor: 'transparent' }} _focus={{ bgColor: 'transparent' }} _active={{ bgColor: 'transparent' }} onClick={() => setOption(bnb)}>
                     <HStack justify={'space-between'} bgColor={'#212429'} w={'full'} p={'2'} borderRadius={'2xl'}>
                         <HStack>
-                            <Img src={eth} boxSize={'4'} />
-                            <Text>Etherium</Text>
+                            <Img src={bnb} boxSize={'4'} />
+                            <Text>BNB</Text>
                         </HStack>
                         <GoPrimitiveDot color='green' />
                     </HStack>
@@ -30,15 +30,15 @@ export default function App() {
                     <HStack justify={'space-between'} bgColor={'#212429'} w={'full'} p={'2'} borderRadius={'2xl'}>
                         <HStack>
                             <Img src={wbtc} boxSize={'4'} />
-                            <Text>W BTC</Text>
+                            <Text>WBTC</Text>
                         </HStack>
                         <GoPrimitiveDot color='green' />
                     </HStack>
                 </MenuItem>
-                <MenuItem px={'0 !important'} _hover={{ bgColor: 'transparent' }} _focus={{ bgColor: 'transparent' }} _active={{ bgColor: 'transparent' }} onClick={() => setOption(btc)}>
+                <MenuItem px={'0 !important'} _hover={{ bgColor: 'transparent' }} _focus={{ bgColor: 'transparent' }} _active={{ bgColor: 'transparent' }} onClick={() => setOption(usdt)}>
                     <HStack justify={'space-between'} bgColor={'#212429'} w={'full'} p={'2'} borderRadius={'2xl'}>
                         <HStack>
-                            <Img src={btc} boxSize={'4'} />
+                            <Img src={usdt} boxSize={'4'} />
                             <Text>USDT</Text>
                         </HStack>
                         <GoPrimitiveDot color='green' />
