@@ -1,28 +1,23 @@
 import { Button, HStack, IconButton, Img, Input, Link, Menu, MenuButton, MenuItem, MenuList, Stack, Text } from '@chakra-ui/react'
-import React, { useState } from 'react'
-import { ethers } from "ethers";
+import React, { useContext, useState } from 'react'
 import pfplogo from '../assets/images/coin.png'
 import bnb from '../assets/images/bnb.png'
 import SelectCurrency from './SelectCurrency'
-import { BsArrowDownShort,  BsThreeDots } from 'react-icons/bs'
+import { BsArrowDownShort, BsThreeDots } from 'react-icons/bs'
 import { AiOutlineTwitter, AiOutlineYoutube } from 'react-icons/ai'
 import { FaTelegramPlane } from 'react-icons/fa'
+import ContextWallet from '../context/ContextConnect';
+
 // import { useNavigate } from 'react-router';
 // import ABI from '../Contract/Contract_ABI.json'
 
 
 
 const Swap = () => {
-    const [useraddress, setUseraddress] = useState()
+    const [image, setImage] = useState(bnb)
+    const { connectWallet, walletAddress } = useContext(ContextWallet)
     var val1 = 0.0, val2 = 0.0
     var currentValue1 = 1710, balance = 0
-    const connectWallet = async () => {
-        const provider = new ethers.providers.Web3Provider(window.ethereum)
-        const address = await provider.send("eth_requestAccounts", []);
-
-        setUseraddress(address)
-        console.log("🚀 ~ file: Swap.jsx ~ line 20 ~ connectWal ~ address", address)
-    }
     return (
         <Stack align={'center'} justify={'center'}>
             <Stack bgColor={'#23242A'} h={'80vh'} w={'fit-content'} borderRadius="2xl" justify={'space-between'} pb={'6'} px={'2'}>
@@ -31,7 +26,9 @@ const Swap = () => {
                     <Stack direction={'row'} alignItems='center' w={'100%'} justify={'space-between'} px={'2'} py={'2'}>
                         <Img src={pfplogo} boxSize={{ base: '6', lg: '12' }} objectFit={'cover'} />
                         <HStack>
-                            <SelectCurrency />
+                            <HStack color={'#B2B9D2'} as={Button} p={'0 !important'} w={'fit-content'} borderRadius={'3xl'} bgColor={'rgb(44, 47, 54)'} boxShadow={'rgb(0 0 0 / 8%) 0px 6px 10px'} _hover={{ bgColor: 'rgb(64, 68, 79)' }} spacing={'4'} px={'6'}>
+                                <Img src={image} w={'6'} />
+                            </HStack>
                             <Button
                                 bgColor={'rgba(21, 61, 111, 0.44)'}
                                 border={'1px solid rgba(21, 61, 111, 0.44)'}
@@ -41,7 +38,7 @@ const Swap = () => {
                                 onClick={() => connectWallet()}
                                 size={{ base: 'sm', lg: 'md' }}
                             >
-                                {useraddress ?
+                                {walletAddress ?
                                     (
 
                                         <Text
@@ -49,7 +46,7 @@ const Swap = () => {
                                             overflow={'hidden'}
                                             w={'14'}
                                         >
-                                            {useraddress}
+                                            {walletAddress}
                                         </Text>
                                     ) : (
                                         <Text
@@ -101,8 +98,20 @@ const Swap = () => {
                         </HStack>
                     </Stack>
                     <Stack px={'2'}>
-                        <Button as={Link} href='https://pfptoken.netlify.app/' px={'2'} py={'2'} bgColor={'rgba(21, 61, 111, 0.44)'} color={'rgb(80, 144, 234)'} _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }} borderRadius={'2xl'}> Back To Hompage</Button>
+                        <Button
+                            as={Link}
+                            href='https://pfptoken.netlify.app/'
+                            px={'2'}
+                            py={'2'}
+                            bgColor={'rgba(21, 61, 111, 0.44)'}
+                            color={'rgb(80, 144, 234)'}
+                            _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }}
+                            borderRadius={'2xl'}
+                        >
+                            Back To Hompage
+                        </Button>
                     </Stack>
+
                     {/* Swap Converter */}
                     <Stack px={'2'}>
                         <Stack bgColor={'#191B1F'} borderRadius={'2xl'} px="3" py={'4'} h={'auto'}>
@@ -112,11 +121,16 @@ const Swap = () => {
                             <Stack spacing={'-3'}>
                                 <Stack bgColor={'#23242A'} minH={'20'} border={'none !important'} borderRadius={'2xl'} color={'#B2B9D2'} px={'6'} py={'2'}>
                                     <HStack fontWeight={'bold'}>
-                                        <Input value={val1} variant={'unstyled'} />
-                                        <HStack as={Button} minW={'auto'} borderRadius={'2xl'} bgColor={'rgb(44, 47, 54)'} boxShadow={'rgb(0 0 0 / 8%) 0px 6px 10px'} _hover={{ bgColor: 'rgb(64, 68, 79)' }} spacing={'4'} px={'6'}>
+                                        <Input value={val1} variant={'unstyled'} w={'auto'} />
+                                        {/* <HStack as={Button} minW={'auto'} borderRadius={'2xl'} bgColor={'rgb(44, 47, 54)'} boxShadow={'rgb(0 0 0 / 8%) 0px 6px 10px'} _hover={{ bgColor: 'rgb(64, 68, 79)' }} spacing={'4'} px={'6'}>
                                             <Img src={bnb} w={'6'} />
                                             <Text>BNB</Text>
-                                        </HStack>
+                                        </HStack> */}
+                                        <SelectCurrency setStateOfParent={(childData) => {
+                                            setImage(childData)
+                                        }
+                                        }
+                                        />
                                     </HStack>
                                     <HStack justify={'space-between'}>
                                         <Text>${currentValue1}</Text>
@@ -146,7 +160,7 @@ const Swap = () => {
                             </Stack>
                             <Text color={'white'} p={'2'}>1 PFP = 0.00014 BNB (Presale Price)</Text>
                             <Button onClick={() => connectWallet()} bgColor={'rgba(21, 61, 111, 0.44)'} color={'rgb(80, 144, 234)'} _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }} borderRadius={'2xl'} size={'lg'}>
-                                {useraddress ?
+                                {walletAddress ?
                                     "Buy"
                                     :
                                     "Connect Wallet"
