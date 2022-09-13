@@ -8,6 +8,9 @@ const ContextWallet = createContext();
 
 export function ContextConnect({ children }) {
     const [walletAddress, setWalletAddress] = useState(null)                  /*Set wallet Address*/
+    const [bnbBalance, setbnbBalance] = useState()                  /*Set wallet Address*/
+    const [wbtcBalance, setwbtcBalance] = useState()                  /*Set wallet Address*/
+    const [pfpBalance, setpfpBalance] = useState()                  /*Set wallet Address*/
     const provider = new ethers.providers.Web3Provider(window.ethereum)       /*Provider ethers.js*/
     const signer = provider.getSigner()                                       /*Sender ethers.js*/
 
@@ -22,13 +25,12 @@ export function ContextConnect({ children }) {
         // const contract = new ethers.Contract(pfpContractAddress, abiPFP, provider);
         const balance = await provider.getBalance(walletAddress);
         console.log("🚀 ~ file: ContextConnect.jsx ~ line 25 ~ getBalance ~ balance", balance)
-        const convBalance = ethers.utils.formatEther(balance)
-        console.log("🚀 ~ file: ContextConnect.jsx ~ line 26 ~ getBalance ~ convBalance", convBalance)
+        const bnb = ethers.utils.formatEther(balance)
+        setbnbBalance(bnb)
     }
-    getBalance()
 
     return (
-        <ContextWallet.Provider value={{ connectWallet, walletAddress }}>
+        <ContextWallet.Provider value={{ connectWallet, walletAddress, getBalance, bnbBalance }}>
             {children}
         </ContextWallet.Provider>
     )

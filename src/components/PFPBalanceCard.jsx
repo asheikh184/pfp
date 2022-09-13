@@ -4,16 +4,16 @@ import card1 from '../assets/images/card1.jpg'
 import coin from '../assets/images/coin.png'
 import ContextWallet from '../context/ContextConnect'
 
-const BalanceCard = ({ balance, validDate, cardHolder, img }) => {
-    const { walletAddress } = useContext(ContextWallet)
+const BalanceCard = ({ validDate, cardHolder, img }) => {
+    const { walletAddress, bnbBalance } = useContext(ContextWallet)
     return (
         <>
             <Stack bgImage={img} justify={'space-between'} bgPos={'center'} bgSize={'cover'} h={'56'} w={{ base: 'full', xl: '100%', '2xl': '60%' }} borderRadius={'lg'} p={'8'} color={'white'} maxW={'100%'}>
                 <Stack spacing={'-1'}>
                     <Text>Wallet Balance</Text>
                     <HStack justify={'space-between'}>
-                        {balance ? (
-                            <Text>{balance}</Text>
+                        {bnbBalance ? (
+                            <Text>{bnbBalance}</Text>
                         ) : (
                             <Text fontWeight={'bold'} fontSize={'3xl'}>0 PFP</Text>
                         )
