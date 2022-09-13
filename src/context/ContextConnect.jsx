@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { ethers } from 'ethers';
 import { pfpContractAddress } from '../utills/constants/constants';
 import abiPFP from '../utills/constants/abiPFP.json'
@@ -20,20 +20,31 @@ export function ContextConnect({ children }) {
         const address = await provider.send("eth_requestAccounts", []);
         setWalletAddress(address)
     }
-    console.log("🚀 ~ file: ContextConnect.jsx ~ line 20 ~ connectWal ~ walletAddress", walletAddress)
+
     const getBalance = async () => {
-        // const contract = new ethers.Contract(pfpContractAddress, abiPFP, provider);
-        const balance = await provider.getBalance(walletAddress);
-        console.log("🚀 ~ file: ContextConnect.jsx ~ line 25 ~ getBalance ~ balance", balance)
-        const bnb = ethers.utils.formatEther(balance)
-        setbnbBalance(bnb)
+        // const contract = new ethers.Contract(pfpContractAddress, abiPFP, provider);\
+        if (walletAddress) {
+            const balance = await provider.getBalance(walletAddress[0]);
+            console.log("🚀 ~ file: ContextConnect.jsx ~ line 25 ~ getBalance ~ balance", balance)
+            const bnb = ethers.utils.formatEther(balance)
+            console.log("🚀 ~ file: ContextConnect.jsx ~ line 29 ~ getBalance ~ bnb", bnb)
+            setbnbBalance(bnb)
+        } else {
+            console.log('no address')
+        }
     }
+    getBalance()
+
+
+
+
 
     return (
-        <ContextWallet.Provider value={{ connectWallet, walletAddress, getBalance, bnbBalance }}>
+        <ContextWallet.Provider value={{ connectWallet, walletAddress, bnbBalance }}>
             {children}
         </ContextWallet.Provider>
     )
 }
+
 export default ContextWallet
 
