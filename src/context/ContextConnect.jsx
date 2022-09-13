@@ -45,6 +45,7 @@ export function ContextConnect({ children }) {
             console.log('no address')
         }
     }
+    console.log(bnbBalance)
     getBalance()
 
 
