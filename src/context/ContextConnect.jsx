@@ -47,11 +47,7 @@ export function ContextConnect({ children }) {
     }
     console.log(bnbBalance)
     getBalance()
-
-
-
-
-
+    
     return (
         <ContextWallet.Provider value={{ connectWallet, walletAddress, bnbBalance, pfpBalance, usdtBalance, wbtcBalance }}>
             {children}
