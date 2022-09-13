@@ -28,6 +28,7 @@ export function ContextConnect({ children }) {
         const bnb = ethers.utils.formatEther(balance)
         setbnbBalance(bnb)
     }
+    console.log(bnbBalance)
 
     return (
         <ContextWallet.Provider value={{ connectWallet, walletAddress, getBalance, bnbBalance }}>
