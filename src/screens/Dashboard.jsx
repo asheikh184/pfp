@@ -10,7 +10,7 @@ import ContextWallet from '../context/ContextConnect'
 
 
 const Dashboard = () => {
-    const { bnbBalance, walletAddress } = useContext(ContextWallet)
+    const { bnbBalance, walletAddress, pfpBalance, usdtBalance, wbtcBalance } = useContext(ContextWallet)
     const addresstoString = walletAddress?.toString()
     const addressString = `${addresstoString?.slice(0, 5)}...${addresstoString?.slice(addresstoString.length - 4)}`
     console.log("🚀 ~ file: Dashboard.jsx ~ line 15 ~ Dashboard ~ addressString", addressString)
@@ -35,9 +35,9 @@ const Dashboard = () => {
                 <Stack direction={{ base: 'column-reverse', lg: 'row' }} alignItems={{ base: 'center', lg: 'inherit' }} p={'8'} justify={'space-between'}>
                     <Grid templateColumns={{ lg: 'repeat(2, 1fr)' }} gap={2} w={{ base: 'fit-content', sm: 'full' }}>
                         <PFPBalanceCard img={card1} balance={bnbBalance} address={addressString} network={'BNB'} />
-                        <PFPBalanceCard img={card2} />
-                        <PFPBalanceCard img={card3} />
-                        <PFPBalanceCard img={card4} />
+                        <PFPBalanceCard img={card2} balance={pfpBalance} address={addressString} network={'PFP'} />
+                        <PFPBalanceCard img={card3} balance={usdtBalance} address={addressString} network={'USDT'} />
+                        <PFPBalanceCard img={card4} balance={wbtcBalance} address={addressString} network={'WBTC'} />
                     </Grid>
                     <Swap />
                 </Stack>
