@@ -19,8 +19,8 @@ const Swap = () => {
     var val1 = 0.0, val2 = 0.0
     var currentValue1 = 1710, balance = 0
     return (
-        <Stack align={'center'} justify={'center'}>
-            <Stack bgColor={'#23242A'} h={'80vh'} w={'fit-content'} borderRadius="2xl" justify={'space-between'} pb={'6'} px={'2'}>
+        <Stack w={'fit-content'}>
+            <Stack bgColor={'#23242A'} h={'fit-content'} w={'fit-content'} borderRadius="2xl" justify={'space-between'} pb={'6'} px={'2'}>
                 <Stack>
                     {/* Header */}
                     <Stack direction={'row'} alignItems='center' w={'100%'} justify={'space-between'} px={'2'} py={'2'}>
@@ -97,21 +97,6 @@ const Swap = () => {
                             </Menu>
                         </HStack>
                     </Stack>
-                    <Stack px={'2'}>
-                        <Button
-                            as={Link}
-                            href='https://pfptoken.netlify.app/'
-                            px={'2'}
-                            py={'2'}
-                            bgColor={'rgba(21, 61, 111, 0.44)'}
-                            color={'rgb(80, 144, 234)'}
-                            _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }}
-                            borderRadius={'2xl'}
-                        >
-                            Back To Hompage
-                        </Button>
-                    </Stack>
-
                     {/* Swap Converter */}
                     <Stack px={'2'}>
                         <Stack bgColor={'#191B1F'} borderRadius={'2xl'} px="3" py={'4'} h={'auto'}>
@@ -169,14 +154,8 @@ const Swap = () => {
                         </Stack>
                     </Stack>
                 </Stack>
-                {/* <Stack rounded={'2xl'} py={'1'} px={'1'} alignSelf={'center'} w={'30%'} bgColor={'#191B1F'} alignItems={'center'}>
-                    <Button _hover={{}} bg='rgb(33, 36, 41)' width={'full'} color={'white'} fontWeight='600' size='md' rounded={'xl'} >Buy</Button>
-                </Stack> */}
-                {/*<Stack rounded={'2xl'} py={'1'} px={'1'} alignSelf={'center'} w={'30%'} bgColor={'#191B1F'} alignItems={'center'}>
-                    <Button _hover={{}} bg='rgb(33, 36, 41)' width={'full'} color={'white'} fontWeight='600' size='md' rounded={'xl'} >Buy</Button>
-                            </Stack>*/}
             </Stack>
-        </Stack >
+        </Stack>
     )
 }
 

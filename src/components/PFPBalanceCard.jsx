@@ -1,12 +1,14 @@
 import { HStack, Img, Stack, Text } from '@chakra-ui/react'
-import React from 'react'
+import React, { useContext } from 'react'
 import card1 from '../assets/images/card1.jpg'
 import coin from '../assets/images/coin.png'
+import ContextWallet from '../context/ContextConnect'
 
 const BalanceCard = ({ balance, validDate, cardHolder, img }) => {
+    const { walletAddress } = useContext(ContextWallet)
     return (
         <>
-            <Stack bgImage={card1} justify={'space-between'} bgPos={'center'} bgSize={'cover'} h={'56'} w={{lg:'23rem'}} borderRadius={'lg'} p={'8'} color={'white'}>
+            <Stack bgImage={img} justify={'space-between'} bgPos={'center'} bgSize={'cover'} h={'56'} w={{ base: 'full', xl: '100%', '2xl': '60%' }} borderRadius={'lg'} p={'8'} color={'white'} maxW={'100%'}>
                 <Stack spacing={'-1'}>
                     <Text>Wallet Balance</Text>
                     <HStack justify={'space-between'}>
@@ -20,7 +22,7 @@ const BalanceCard = ({ balance, validDate, cardHolder, img }) => {
                     </HStack>
                 </Stack>
 
-                
+
 
                 <Stack spacing={'0'}>
                     <Text opacity={'0.6'} fontSize={'xs'}>Wallet Address</Text>
@@ -30,15 +32,15 @@ const BalanceCard = ({ balance, validDate, cardHolder, img }) => {
                                 {cardHolder}
                             </Text>
                         ) : (
-                            <Text fontSize={'sm'} textOverflow={'clip'}  overflow={'hidden'}>
-                            0x319F54A7d519f073eCE0fef9097F142b0767F3C3
+                            <Text fontSize={'sm'} textOverflow={'clip'} overflow={'hidden'}>
+                                {walletAddress}
                             </Text>
                         )
                     }
                 </Stack>
             </Stack>
 
-            
+
         </>
     )
 }
