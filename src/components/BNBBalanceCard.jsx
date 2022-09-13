@@ -17,7 +17,7 @@ const BalanceCard = ({ balance, validDate, cardHolder, img }) => {
                         {balance ? (
                             <Text>{balance}</Text>
                         ) : (
-                            <Text fontWeight={'bold'} fontSize={'3xl'}> BNB</Text>
+                            <Text fontWeight={'bold'} fontSize={'3xl'}>0 BNB</Text>
                         )
                         }
                         <Img src={coin} objectFit={'cover'} boxSize={'10'} />

@@ -97,6 +97,22 @@ const Swap = () => {
                             </Menu>
                         </HStack>
                     </Stack>
+                    <Stack px={'2'}>
+                        <Button
+                            // as={Link}
+                            // href='https://pfptoken.netlify.app/'
+
+                            px={'2'}
+                            py={'2'}
+                            bgColor={'rgba(21, 61, 111, 0.44)'}
+                            color={'rgb(80, 144, 234)'}
+                            _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }}
+                            borderRadius={'2xl'}
+                        >
+                            Import BNB From Card
+                        </Button>
+                    </Stack>
+
                     {/* Swap Converter */}
                     <Stack px={'2'}>
                         <Stack bgColor={'#191B1F'} borderRadius={'2xl'} px="3" py={'4'} h={'auto'}>
