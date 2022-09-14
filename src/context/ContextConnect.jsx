@@ -7,7 +7,8 @@ const ContextWallet = createContext();
 
 
 export function ContextConnect({ children }) {
-    const [walletAddress, setWalletAddress] = useState(null)                  /*Set wallet Address*/
+    const [walletAddress, setWalletAddress] = useState()                  /*Set wallet Address*/
+    console.log("🚀 ~ file: ContextConnect.jsx ~ line 11 ~ ContextConnect ~ walletAddress", walletAddress)
     const [bnbBalance, setbnbBalance] = useState()                            /*Set wallet Address*/
     const [wbtcBalance, setwbtcBalance] = useState()                          /*Set wallet Address*/
     const [pfpBalance, setpfpBalance] = useState()                            /*Set wallet Address*/
@@ -19,27 +20,31 @@ export function ContextConnect({ children }) {
     // Methode to connect wallet 
     const connectWallet = async () => {
         const address = await provider.send("eth_requestAccounts", []);
-        setWalletAddress(address)
+        setWalletAddress(address[0])
     }
 
     const getBalance = async () => {
-        // const contract = new ethers.Contract(pfpContractAddress, abiPFP, provider);\
+      
         if (walletAddress) {
 
-            const balance = await provider.getBalance(walletAddress[0]);
+            const balance = await provider.getBalance(walletAddress);
+            console.log("🚀 ~ file: ContextConnect.jsx ~ line 31 ~ getBalance ~ balance", balance)
             const bnb = ethers.utils.formatEther(balance)
+            console.log("🚀 ~ file: ContextConnect.jsx ~ line 33 ~ getBalance ~ bnb", bnb)
             setbnbBalance(bnb)
 
-            const pfpContract = new ethers.Contract(pfpContractAddress, abiPFP, provider);
-            const pfp = await pfpContract.balanceOf(walletAddress[0])
-            setpfpBalance(pfp)
+            // const pfpContract = new ethers.Contract(pfpContractAddress, abiPFP, provider);
+            // const pfp = await pfpContract.balanceOf(walletAddress)
+            // console.log("🚀 ~ file: ContextConnect.jsx ~ line 38 ~ getBalance ~ pfp", pfp)
+            // // setpfpBalance(pfp)
 
             const usdtContract = new ethers.Contract(usdtContractAddress, abiPFP, provider);
-            const usdt = await usdtContract.balanceOf(walletAddress[0])
+            const usdt = await usdtContract.balanceOf(walletAddress)
+            console.log("🚀 ~ file: ContextConnect.jsx ~ line 43 ~ getBalance ~ usdt", usdt)
             setusdtBalance(usdt)
 
             const wbtcContract = new ethers.Contract(wbtcContractAddress, abiPFP, provider);
-            const wbtc = await wbtcContract.balanceOf(walletAddress[0])
+            const wbtc = await wbtcContract.balanceOf(walletAddress)
             setwbtcBalance(wbtc)
         } else {
             console.log('no address')

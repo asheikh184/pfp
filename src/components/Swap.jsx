@@ -19,13 +19,16 @@ const Swap = () => {
     const { connectWallet, walletAddress } = useContext(ContextWallet)
     var val1 = 0.0, val2 = 0.0
     var currentValue1 = 1710, balance = 0
-    const handleChange = (e) => {
-        if (e.target.value !== 0) {
-            setCalculated(true)
-        } else {
-            setCalculated(false)
-        }
-    }
+    // const handleChange = (e) => {
+    //     console.log(e.target.value)
+    //     // if (e.target.value !== 0) {
+    //     //     setCalculated(true)
+    //     //     console.log("🚀 ~ file: Swap.jsx ~ line 25 ~ handleChange ~ calculated", calculated)
+    //     // } else if(e.target.value === 0) {
+    //     //     setCalculated(false)
+    //     //     console.log("🚀 ~ file: Swap.jsx ~ line 28 ~ handleChange ~ calculated", calculated)
+    //     // }
+    // }
     return (
         <Stack w={'fit-content'}>
             <Stack bgColor={'#23242A'} h={'fit-content'} w={'fit-content'} borderRadius="2xl" justify={'space-between'} pb={'6'} px={'2'}>
@@ -130,7 +133,7 @@ const Swap = () => {
                             <Stack spacing={'-3'}>
                                 <Stack bgColor={'#23242A'} minH={'20'} border={'none !important'} borderRadius={'2xl'} color={'#B2B9D2'} px={'6'} py={'2'}>
                                     <HStack fontWeight={'bold'}>
-                                        <Input value={val1} variant={'unstyled'} w={'auto'} onChange={(e) => handleChange(e)} />
+                                        <Input value={val1} variant={'unstyled'} w={'auto'}  />
                                         {/* <HStack as={Button} minW={'auto'} borderRadius={'2xl'} bgColor={'rgb(44, 47, 54)'} boxShadow={'rgb(0 0 0 / 8%) 0px 6px 10px'} _hover={{ bgColor: 'rgb(64, 68, 79)' }} spacing={'4'} px={'6'}>
                                             <Img src={bnb} w={'6'} />
                                             <Text>BNB</Text>
@@ -155,7 +158,7 @@ const Swap = () => {
 
                                 <Stack bgColor={'#23242A'} minH={'20'} border={'none !important'} borderRadius={'2xl'} color={'#B2B9D2'} px={'6'} py={'2'}>
                                     <HStack fontWeight={'bold'}>
-                                        <Input value={val2} variant={'unstyled'} onChange={(e) => handleChange(e)} />
+                                        <Input value={val2} variant={'unstyled'}  />
                                         <HStack as={Button} minW={'auto'} borderRadius={'2xl'} bgColor={'rgb(44, 47, 54)'} boxShadow={'rgb(0 0 0 / 8%) 0px 6px 10px'} _hover={{ bgColor: 'rgb(64, 68, 79)' }} spacing={'4'} px={'6'}>
                                             <Img src={pfplogo} boxSize={'6'} />
                                             <Text>PFP</Text>
@@ -167,14 +170,14 @@ const Swap = () => {
                                     </HStack>
                                 </Stack>
                             </Stack>
-                            {calculated
+                            {/* {calculated
                                 ?
                                 (
                                     <Text color={'white'} p={'2'}>1 PFP = 0.00014 BNB (Presale Price)</Text>
                                 )
                                 :
                                 ''
-                            }
+                            } */}
                             <Button onClick={() => connectWallet()} bgColor={'rgba(21, 61, 111, 0.44)'} color={'rgb(80, 144, 234)'} _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }} borderRadius={'2xl'} size={'lg'}>
                                 {walletAddress ?
                                     "Buy"

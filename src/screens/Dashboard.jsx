@@ -6,11 +6,15 @@ import card1 from '../assets/images/card1.jpg'
 import card2 from '../assets/images/card2.jpg'
 import card3 from '../assets/images/card3.jpg'
 import card4 from '../assets/images/card4.jpg'
+import pfp from '../assets/images/coin.png'
+import bnb from '../assets/images/bnb.png'
+import usdt from '../assets/images/usdt.png'
+import wbtc from '../assets/images/wbtc.png'
 import ContextWallet from '../context/ContextConnect'
 
 
 const Dashboard = () => {
-    const { bnbBalance, walletAddress, pfpBalance, usdtBalance, wbtcBalance } = useContext(ContextWallet)
+    const {  walletAddress, pfpBalance, usdtBalance, wbtcBalance } = useContext(ContextWallet)
     const addresstoString = walletAddress?.toString()
     const addressString = `${addresstoString?.slice(0, 5)}...${addresstoString?.slice(addresstoString.length - 4)}`
     console.log("🚀 ~ file: Dashboard.jsx ~ line 15 ~ Dashboard ~ addressString", addressString)
@@ -32,12 +36,12 @@ const Dashboard = () => {
                         Back To Hompage
                     </Button>
                 </Stack>
-                <Stack direction={{ base: 'column-reverse', lg: 'row' }} alignItems={{ base: 'center', lg: 'inherit' }} p={'8'} justify={'space-between'}>
-                    <Grid templateColumns={{ lg: 'repeat(2, 1fr)' }} gap={2} w={{ base: 'fit-content', sm: 'full' }}>
-                        <PFPBalanceCard img={card1} balance={bnbBalance} address={addressString} network={'BNB'} />
-                        <PFPBalanceCard img={card2} balance={pfpBalance} address={addressString} network={'PFP'} />
-                        <PFPBalanceCard img={card3} balance={usdtBalance} address={addressString} network={'USDT'} />
-                        <PFPBalanceCard img={card4} balance={wbtcBalance} address={addressString} network={'WBTC'} />
+                <Stack spacing={'4'} direction={{ base: 'column-reverse', lg: 'row' }} alignItems={{ base: 'center', lg: 'inherit' }} p={'8'} justify={'space-between'}>
+                    <Grid templateColumns={{ lg: 'repeat(2, 1fr)' }} gap={5} w={{ base: 'full', sm: 'full' }}>
+                        <PFPBalanceCard img={card1} coin={pfp} balance={'0'} address={addressString} network={'PFP'} />
+                        <PFPBalanceCard img={card2} coin={bnb} balance={pfpBalance} address={addressString} network={'BNB'} />
+                        <PFPBalanceCard img={card3} coin={wbtc} balance={usdtBalance} address={addressString} network={'WBTC'} />
+                        <PFPBalanceCard img={card4} coin={usdt} balance={wbtcBalance} address={addressString} network={'USDT'} />
                     </Grid>
                     <Swap />
                 </Stack>
