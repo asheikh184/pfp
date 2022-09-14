@@ -32,14 +32,10 @@ import ContextWallet from '../context/ContextConnect';
 
 const Swap = () => {
   const [image, setImage] = useState(bnb);
-  const [calculated, setCalculated] = useState(false);
-  const [show, setShow] = useState('none');
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { connectWallet, walletAddress, setapproveOwner, usdtContractAdd } =
-    useContext(ContextWallet);
-  var val1 = 0.0,
-    val2 = 0.0;
+  const { connectWallet, walletAddress, setapproveOwner, usdtContractFunction } = useContext(ContextWallet);
+
   var currentValue1 = 1710,
     balance = 0;
   // const handleChange = (e) => {
@@ -54,8 +50,13 @@ const Swap = () => {
   // }
 
   const handleBuyCall = () => {
-    connectWallet();
-    usdtContractAdd();
+    if (walletAddress) {
+      console.log('have wallet Address')
+      usdtContractFunction();
+    } else {
+      console.log('Not have wallet Address')
+      connectWallet();
+    }
   };
   return (
     <Stack w={'fit-content'}>

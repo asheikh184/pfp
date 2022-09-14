@@ -14,11 +14,9 @@ import ContextWallet from '../context/ContextConnect'
 
 
 const Dashboard = () => {
-    const {  walletAddress,bnbBalance, pfpBalance, usdtBalance, wbtcBalance } = useContext(ContextWallet)
-    console.log(usdtBalance)
+    const { walletAddress, bnbBalance, usdtBalance, wbtcBalance, pfpBalance } = useContext(ContextWallet)
     const addresstoString = walletAddress?.toString()
     const addressString = `${addresstoString?.slice(0, 5)}...${addresstoString?.slice(addresstoString.length - 4)}`
-    console.log("🚀 ~ file: Dashboard.jsx ~ line 15 ~ Dashboard ~ addressString", addressString)
     return (
         <>
             <Stack bgColor={'#0b0c22'} p={'6'}>
@@ -37,19 +35,25 @@ const Dashboard = () => {
                         Back To Hompage
                     </Button>
                 </Stack>
+
+
                 <Stack spacing={'4'} direction={{ base: 'column-reverse', lg: 'row' }} alignItems={{ base: 'center', lg: 'inherit' }} p={'8'} justify={'space-between'}>
+                    {/* Balance Cards */}
                     <Grid templateColumns={{ lg: 'repeat(2, 1fr)' }} gap={5} w={{ base: 'full', sm: 'full' }}>
                         <PFPBalanceCard img={card1} coin={pfp} balance={pfpBalance} address={addressString} network={'PFP'} />
                         <PFPBalanceCard img={card2} coin={bnb} balance={bnbBalance} address={addressString} network={'BNB'} />
                         <PFPBalanceCard img={card3} coin={wbtc} balance={wbtcBalance} address={addressString} network={'WBTC'} />
                         <PFPBalanceCard img={card4} coin={usdt} balance={usdtBalance} address={addressString} network={'USDT'} />
                     </Grid>
+                    {/* Swap Card */}
                     <Swap />
                 </Stack>
+
+
                 <Stack align={'center'} w={'full'} p={'6'}>
                     <iframe title="Crypto Currencies" src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=100&pref_coin_id=1505&graph=yes" height="700px" width="100%"></iframe>
                 </Stack>
-                
+
             </Stack>
         </>
     )

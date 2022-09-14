@@ -2,8 +2,7 @@ import { HStack, Img, Stack, Text } from '@chakra-ui/react'
 import React, { useContext } from 'react'
 import ContextWallet from '../context/ContextConnect'
 
-const BalanceCard = ({ validDate, cardHolder, img, balance, address, network,coin }) => {
-    console.log("🚀 ~ file: PFPBalanceCard.jsx ~ line 7 ~ BalanceCard ~ balance", balance)
+const BalanceCard = ({ img, balance, address, network,coin }) => {
     const { walletAddress} = useContext(ContextWallet)
     return (
         <>
