@@ -7,10 +7,11 @@ import { GoPrimitiveDot } from 'react-icons/go';
 import { BsChevronDown } from 'react-icons/bs';
 
 
-export default function App({ setStateOfParent }) {
+export default function App({ setStateOfParent, setSelectedNetwork }) {
     const [option, setOption] = useState(bnb)
     const [optionName, setOptionName] = useState('BNB')
     setStateOfParent(option)
+    setSelectedNetwork(optionName)
     return (
         <Menu>
             <MenuButton

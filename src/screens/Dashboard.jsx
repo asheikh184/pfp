@@ -23,7 +23,7 @@ const Dashboard = () => {
                 <Stack px={'8'}>
                     <Button
                         as={Link}
-                        href='https://pfptoken.netlify.app/'
+                        href='http://3.83.88.61/'
                         px={'2'}
                         py={'2'}
                         bgColor={'#23242A'}

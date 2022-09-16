@@ -3,7 +3,6 @@ import {
   HStack,
   IconButton,
   Img,
-  Input,
   Link,
   Menu,
   MenuButton,
@@ -27,34 +26,45 @@ import { AiOutlineTwitter, AiOutlineYoutube } from 'react-icons/ai';
 import { FaTelegramPlane } from 'react-icons/fa';
 import ContextWallet from '../context/ContextConnect';
 
-// import { useNavigate } from 'react-router';
-// import ABI from '../Contract/Contract_ABI.json'
+const Input = ({ placeholder, name, handleChange, type }) => (
+  <input
+    placeholder={placeholder}
+    type={type}
+    onChange={e => handleChange(e, name)}
+    style={{backgroundColor:'transparent'}}
+  />
+);
 
 const Swap = () => {
   const [image, setImage] = useState(bnb);
+  const [networkAmount, setNetworkAmount] = useState();
+  const [selectedNetwork, setSelectedNetwork] = useState('BNB');
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const { connectWallet, walletAddress, setapproveOwner, usdtContractFunction } = useContext(ContextWallet);
-
-  var currentValue1 = 1710,
-    balance = 0;
-  // const handleChange = (e) => {
-  //     console.log(e.target.value)
-  //     // if (e.target.value !== 0) {
-  //     //     setCalculated(true)
-  //     //     console.log("🚀 ~ file: Swap.jsx ~ line 25 ~ handleChange ~ calculated", calculated)
-  //     // } else if(e.target.value === 0) {
-  //     //     setCalculated(false)
-  //     //     console.log("🚀 ~ file: Swap.jsx ~ line 28 ~ handleChange ~ calculated", calculated)
-  //     // }
-  // }
+  console.log(networkAmount);
+  const {
+    connectWallet,
+    walletAddress,
+    setapproveOwner,
+    usdtContractFunction,
+    wbtcContractFunction,
+    bnbContractFunction,
+    handleChange,
+  } = useContext(ContextWallet);
 
   const handleBuyCall = () => {
     if (walletAddress) {
-      console.log('have wallet Address')
-      usdtContractFunction();
+      console.log('have wallet Address');
+      if (selectedNetwork === 'USDT') {
+        usdtContractFunction();
+      }
+      else if(selectedNetwork === 'WBTC') {
+        wbtcContractFunction()
+      }
+      else {
+        bnbContractFunction()
+      }
     } else {
-      console.log('Not have wallet Address')
+      console.log('Not have wallet Address');
       connectWallet();
     }
   };
@@ -236,12 +246,12 @@ const Swap = () => {
                 >
                   <HStack fontWeight={'bold'}>
                     <Input
-                      placeholder={'amount'}
+                      placeholder="Price"
+                      name="price"
                       type="number"
-                      variant={'unstyled'}
-                      w={'auto'}
-                      onChange={e => setapproveOwner(e.target.value)}
+                      handleChange={handleChange}
                     />
+
                     {/* <HStack as={Button} minW={'auto'} borderRadius={'2xl'} bgColor={'rgb(44, 47, 54)'} boxShadow={'rgb(0 0 0 / 8%) 0px 6px 10px'} _hover={{ bgColor: 'rgb(64, 68, 79)' }} spacing={'4'} px={'6'}>
                                             <Img src={bnb} w={'6'} />
                                             <Text>BNB</Text>
@@ -250,11 +260,21 @@ const Swap = () => {
                       setStateOfParent={childData => {
                         setImage(childData);
                       }}
+                      setSelectedNetwork={network => {
+                        setSelectedNetwork(network);
+                      }}
                     />
                   </HStack>
                   <HStack justify={'space-between'}>
-                    <Text>${currentValue1}</Text>
-                    <Text>Balance {balance}</Text>
+                    <Text>
+                      1 {selectedNetwork} = 
+                      {selectedNetwork === 'BNB'
+                        ? ' 273.87'
+                        : selectedNetwork === 'WBTC'
+                        ? ' 19 568,87'
+                        : ' 1'}$
+                    </Text>
+                    <Text>Balance </Text>
                   </HStack>
                 </Stack>
 
@@ -289,7 +309,9 @@ const Swap = () => {
                 >
                   <HStack fontWeight={'bold'}>
                     <Input
-                      placeholder={'amount'}
+                      isDisabled
+                      value={'0'}
+                      placeholder={'Quantity'}
                       type="number"
                       variant={'unstyled'}
                     />
@@ -308,10 +330,15 @@ const Swap = () => {
                     </HStack>
                   </HStack>
                   <HStack justify={'space-between'}>
-                    <Text>${currentValue1}</Text>
-                    <Text>Balance {balance}</Text>
+                    <Text>$</Text>
+                    <Text>Balance</Text>
                   </HStack>
                 </Stack>
+              </Stack>
+              <Stack>
+                <Text textAlign={'center'} color="white" fontWeight={'bold'}>
+                  1 PFP = 0.036$
+                </Text>
               </Stack>
               {/* {calculated
                                 ?
