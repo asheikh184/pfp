@@ -22,7 +22,7 @@ import pfplogo from '../assets/images/coin.png';
 import bnb from '../assets/images/bnb.png';
 import SelectCurrency from './SelectCurrency';
 import { BsArrowDownShort, BsThreeDots } from 'react-icons/bs';
-import { AiOutlineTwitter, AiOutlineYoutube } from 'react-icons/ai';
+import { AiOutlineFacebook, AiOutlineTwitter } from 'react-icons/ai';
 import { FaTelegramPlane } from 'react-icons/fa';
 import ContextWallet from '../context/ContextConnect';
 
@@ -159,31 +159,7 @@ const Swap = () => {
                   border={'none'}
                   borderRadius={'2xl'}
                 >
-                  <MenuItem
-                    as={Button}
-                    rightIcon={<AiOutlineTwitter />}
-                    justifyContent={'space-between'}
-                    bgColor={'transparent'}
-                    color={'rgb(195, 197, 203)'}
-                    _hover={{ color: 'white', bgColor: 'transparent' }}
-                    _focus={{}}
-                    _active={{}}
-                  >
-                    PFP Twitter
-                  </MenuItem>
-                  <MenuItem
-                    as={Button}
-                    rightIcon={<AiOutlineYoutube />}
-                    justifyContent={'space-between'}
-                    bgColor={'transparent'}
-                    color={'rgb(195, 197, 203)'}
-                    _hover={{ color: 'white', bgColor: 'transparent' }}
-                    _focus={{}}
-                    _active={{}}
-                  >
-                    PFP Discord
-                  </MenuItem>
-                  <MenuItem
+                <MenuItem
                     as={Button}
                     rightIcon={<FaTelegramPlane />}
                     justifyContent={'space-between'}
@@ -196,6 +172,31 @@ const Swap = () => {
                     PFP Telegram
                   </MenuItem>
 
+                  <MenuItem
+                    as={Button}
+                    rightIcon={<AiOutlineFacebook />}
+                    justifyContent={'space-between'}
+                    bgColor={'transparent'}
+                    color={'rgb(195, 197, 203)'}
+                    _hover={{ color: 'white', bgColor: 'transparent' }}
+                    _focus={{}}
+                    _active={{}}
+                  >
+                    PFP Facebook
+                  </MenuItem>
+                  <MenuItem
+                  as={Button}
+                  rightIcon={<AiOutlineTwitter />}
+                  justifyContent={'space-between'}
+                  bgColor={'transparent'}
+                  color={'rgb(195, 197, 203)'}
+                  _hover={{ color: 'white', bgColor: 'transparent' }}
+                  _focus={{}}
+                  _active={{}}
+                >
+                  PFP Twitter
+                </MenuItem>
+                
                   {/* <MenuItem as={Button} rightIcon={<MdLanguage />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
                                         Language
                                     </MenuItem>
@@ -330,7 +331,7 @@ const Swap = () => {
                     </HStack>
                   </HStack>
                   <HStack justify={'space-between'}>
-                    <Text>$</Text>
+                    <Text></Text>
                     <Text>Balance</Text>
                   </HStack>
                 </Stack>

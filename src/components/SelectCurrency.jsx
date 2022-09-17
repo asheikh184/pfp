@@ -18,6 +18,7 @@ export default function App({ setStateOfParent, setSelectedNetwork }) {
                 as={Button}
                 rightIcon={<BsChevronDown color='white' />}
                 bgColor={'rgb(44, 47, 54)'} borderRadius={'2xl'}
+                p={1}
                 _hover={{ bgColor: '#181A1E', borderColor: '1px solid rgb(64, 68, 79)' }}
                 _focus={{ bgColor: 'rgb(44, 47, 54)' }}
                 _active={{ bgColor: 'rgb(44, 47, 54)' }}

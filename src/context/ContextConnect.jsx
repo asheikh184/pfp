@@ -101,6 +101,7 @@ export function ContextConnect({ children }) {
       icoContract.on("InvestUSDT", (to, amount, from) => {
         console.log(to, amount, from);
         const etherAmount =  ethers.utils.formatEther(amount)
+        
         toast({
             description: `${from} PFP transfered to ${to} converted from ${etherAmount} USDT.`,
             status: 'success',
@@ -149,7 +150,18 @@ export function ContextConnect({ children }) {
 
       const investwbtc = await icoContract.investWBTC(convertedInput, {
         gasLimit: 3000000,
+        
       });
+      icoContract.on("InvestWBTC", (to, amount, from) => {
+        console.log(to, amount, from);
+        const etherAmount =  ethers.utils.formatEther(amount)
+        toast({
+            description: `${from} PFP transfered to Your wallet address ${to} at the price of ${etherAmount} WBTC.`,
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+          })
+    });
     }
   };
 
@@ -161,6 +173,16 @@ export function ContextConnect({ children }) {
       value: convertedInput,
       gasLimit: 3000000,
     });
+    icoContract.on("InvestBNB", (to, amount, from) => {
+      console.log(to, amount, from);
+      const etherAmount =  ethers.utils.formatEther(amount)
+      toast({
+          description: `${from} PFP transfered to Your wallet address ${to} at the price of ${etherAmount} BNB.`,
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
+  });
     console.log(
       '🚀 ~ file: ContextConnect.jsx ~ line 158 ~ bnbContractFunction ~ transaction',
       transaction
