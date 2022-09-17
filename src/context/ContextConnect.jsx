@@ -6,7 +6,6 @@ import {
   icoContractAddress,
   pfpContractAddress,
   usdtContractAddress,
-  bnbContractAddress,
   wbtcContractAddress,
 } from '../utills/constants/constants';
 import { useToast } from '@chakra-ui/react';
@@ -81,7 +80,7 @@ export function ContextConnect({ children }) {
         '20000000000000000000000'
       );
       const parseapproveOwner = ethers.utils.parseEther(input);
-      const investUSDT = await icoContract.getTokenAgainstUsdt(
+      const investUSDT = await icoContract.investUSDT(
         parseapproveOwner,
         { gasLimit: 3000000 }
       );
@@ -93,7 +92,7 @@ export function ContextConnect({ children }) {
       );
 
       const convertedInput = ethers.utils.parseEther(convertedObject);
-      const investUSD = await icoContract.getTokenAgainstUsdt(
+      const investUSD = await icoContract.investUSDT(
         convertedInput,
         { gasLimit: 3000000 }
       );

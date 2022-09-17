@@ -276,7 +276,7 @@ const Swap = () => {
                         ? ' 19 568,87'
                         : ' 1'}$
                     </Text>                    
-                    {/*<Text>Balance</Text>*/}
+                    <Text>Selected Token</Text>
 
                   </HStack>
                 </Stack>
