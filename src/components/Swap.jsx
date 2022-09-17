@@ -50,7 +50,8 @@ const Swap = () => {
     bnbContractFunction,
     handleChange,
   } = useContext(ContextWallet);
-
+  const addresstoString = walletAddress?.toString()
+    const addressString = `${addresstoString?.slice(0, 6)}...`
   const handleBuyCall = () => {
     if (walletAddress) {
       console.log('have wallet Address');
@@ -127,7 +128,7 @@ const Swap = () => {
                     overflow={'hidden'}
                     w={'14'}
                   >
-                    {walletAddress}
+                    {addressString}
                   </Text>
                 ) : (
                   <Text
@@ -233,7 +234,7 @@ const Swap = () => {
               h={'auto'}
             >
               <HStack color={'white'} px={'3'} justify={'space-between'}>
-                <Text fontWeight={'bold'}>Buy PFP</Text>
+                <Text fontWeight={'bold'}>Buy PFP Tokens</Text>
               </HStack>
               <Stack spacing={'-3'}>
                 <Stack
@@ -274,8 +275,9 @@ const Swap = () => {
                         : selectedNetwork === 'WBTC'
                         ? ' 19 568,87'
                         : ' 1'}$
-                    </Text>
-                    <Text>Balance </Text>
+                    </Text>                    
+                    {/*<Text>Balance</Text>*/}
+
                   </HStack>
                 </Stack>
 
@@ -331,8 +333,8 @@ const Swap = () => {
                     </HStack>
                   </HStack>
                   <HStack justify={'space-between'}>
-                    <Text></Text>
-                    <Text>Balance</Text>
+                    <Text>(In process)</Text>
+                    {/*<Text>Balance</Text>*/}
                   </HStack>
                 </Stack>
               </Stack>
