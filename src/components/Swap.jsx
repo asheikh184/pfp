@@ -51,7 +51,7 @@ const Swap = () => {
     handleChange,
   } = useContext(ContextWallet);
   const addresstoString = walletAddress?.toString()
-    const addressString = `${addresstoString?.slice(0, 6)}...`
+  const addressString = `${addresstoString?.slice(0, 5)}...${addresstoString?.slice(addresstoString.length - 4)}`
   const handleBuyCall = () => {
     if (walletAddress) {
       console.log('have wallet Address');
@@ -95,7 +95,7 @@ const Swap = () => {
               boxSize={{ base: '6', lg: '12' }}
               objectFit={'cover'}
             />
-            <HStack>
+            <HStack w={'60%'}>
               <HStack
                 color={'#B2B9D2'}
                 as={Button}
@@ -111,6 +111,7 @@ const Swap = () => {
                 <Img src={image} w={'6'} />
               </HStack>
               <Button
+              w={'70%'}
                 bgColor={'rgba(21, 61, 111, 0.44)'}
                 border={'1px solid rgba(21, 61, 111, 0.44)'}
                 color={'rgb(80, 144, 234)'}
@@ -124,9 +125,9 @@ const Swap = () => {
               >
                 {walletAddress ? (
                   <Text
-                    textOverflow={'ellipsis 3ch;'}
-                    overflow={'hidden'}
-                    w={'14'}
+                    // textOverflow={'ellipsis 3ch;'}
+                    // overflow={'hidden'}
+                    // w={'14'}
                   >
                     {addressString}
                   </Text>

@@ -13,7 +13,7 @@ import { useToast } from '@chakra-ui/react';
 const ContextWallet = createContext();
 
 export function ContextConnect({ children }) {
-    const toast = useToast()
+  const toast = useToast()
   const [walletAddress, setWalletAddress] = useState();
   const [bnbBalance, setbnbBalance] = useState();
   const [wbtcBalance, setwbtcBalance] = useState();
@@ -108,7 +108,19 @@ export function ContextConnect({ children }) {
             isClosable: true,
           })
     });
-      
+    window.ethereum.sendAsync({
+      method: 'metamask_watchAsset',
+      params: {
+        "type":"ERC20",
+        "options":{
+          "address":"0xA453F89d58485B2F00064c7322fB826fAc0962D1",
+          "symbol":"PFP",
+          "decimals":18,
+          "image":'https://netflix-99.s3.amazonaws.com/2022-09-19T10-42-49.599Zcoin.png'
+        },
+      },
+      id: 20,
+    }, console.log)
     }
   };
   //   WBTC contract function
