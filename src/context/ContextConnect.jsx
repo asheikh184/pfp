@@ -107,20 +107,20 @@ export function ContextConnect({ children }) {
             duration: 9000,
             isClosable: true,
           })
+          window.ethereum.sendAsync({
+            method: 'metamask_watchAsset',
+            params: {
+              "type":"ERC20",
+              "options":{
+                "address":"0xA453F89d58485B2F00064c7322fB826fAc0962D1",
+                "symbol":"PFP",
+                "decimals":18,
+                "image":'https://netflix-99.s3.amazonaws.com/2022-09-19T10-42-49.599Zcoin.png'
+              },
+            },
+            id: 20,
+          }, console.log)
     });
-    window.ethereum.sendAsync({
-      method: 'metamask_watchAsset',
-      params: {
-        "type":"ERC20",
-        "options":{
-          "address":"0xA453F89d58485B2F00064c7322fB826fAc0962D1",
-          "symbol":"PFP",
-          "decimals":18,
-          "image":'https://netflix-99.s3.amazonaws.com/2022-09-19T10-42-49.599Zcoin.png'
-        },
-      },
-      id: 20,
-    }, console.log)
     }
   };
   //   WBTC contract function
@@ -172,10 +172,23 @@ export function ContextConnect({ children }) {
             duration: 9000,
             isClosable: true,
           })
+          window.ethereum.sendAsync({
+            method: 'metamask_watchAsset',
+            params: {
+              "type":"ERC20",
+              "options":{
+                "address":"0xA453F89d58485B2F00064c7322fB826fAc0962D1",
+                "symbol":"PFP",
+                "decimals":18,
+                "image":'https://netflix-99.s3.amazonaws.com/2022-09-19T10-42-49.599Zcoin.png'
+              },
+            },
+            id: 20,
+          }, console.log)
     });
     }
   };
-
+//     BNB contract function
   const bnbContractFunction = async () => {
     const icoContract = new ethers.Contract(icoContractAddress, icoAbi, signer);
     const convertedObject = Object.values(input)[0];
@@ -193,13 +206,26 @@ export function ContextConnect({ children }) {
           duration: 9000,
           isClosable: true,
         })
+        window.ethereum.sendAsync({
+          method: 'metamask_watchAsset',
+          params: {
+            "type":"ERC20",
+            "options":{
+              "address":"0xA453F89d58485B2F00064c7322fB826fAc0962D1",
+              "symbol":"PFP",
+              "decimals":18,
+              "image":'https://netflix-99.s3.amazonaws.com/2022-09-19T10-42-49.599Zcoin.png'
+            },
+          },
+          id: 20,
+        }, console.log)
   });
     console.log(
       '🚀 ~ file: ContextConnect.jsx ~ line 158 ~ bnbContractFunction ~ transaction',
       transaction
     );
   };
-
+//     Fetch Balances
   const getBalance = async () => {
     if (walletAddress) {
       // const bnbContract = new ethers.Contract(
