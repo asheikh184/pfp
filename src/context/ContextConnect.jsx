@@ -9,6 +9,12 @@ import {
   wbtcContractAddress,
 } from '../utills/constants/constants';
 import { useToast } from '@chakra-ui/react';
+import detectEthereumProvider from "@metamask/detect-provider";
+import MetaMaskOnboarding from "@metamask/onboarding";
+
+const msg_mobile = "Please use MetaMask App!";
+const msg_desk = "Please install MetaMask Wallet extension";
+const deepLink = "https://metamask.app.link/dapp/pfp-dashboard.netlify.app/";
 
 const ContextWallet = createContext();
 
@@ -20,6 +26,8 @@ export function ContextConnect({ children }) {
   const [pfpBalance, setpfpBalance] = useState();
   const [usdtBalance, setusdtBalance] = useState();
   const [input, setInput] = useState();
+  const [isApproveButton, setisApproveButton] = useState(false);
+  
 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
@@ -30,6 +38,8 @@ export function ContextConnect({ children }) {
 
   // Methode to connect wallet
   const connectWallet = async () => {
+    
+
     const address = await provider.send('eth_requestAccounts', []);
     setWalletAddress(address[0]);
   };
@@ -73,17 +83,9 @@ export function ContextConnect({ children }) {
       adjustedAllowance
     );
 
-    if (adjustedAllowance < 1) {
+    if (adjustedAllowance > 1) {
       console.log('This is if statement');
-      const approveAllowanceAmount = await usdtContract.approve(
-        icoContractAddress,
-        '20000000000000000000000'
-      );
-      const parseapproveOwner = ethers.utils.parseEther(input);
-      const investUSDT = await icoContract.investUSDT(
-        parseapproveOwner,
-        { gasLimit: 3000000 }
-      );
+          setisApproveButton(true)
     } else {
       const convertedObject = Object.values(input)[0];
       console.log(
@@ -101,12 +103,13 @@ export function ContextConnect({ children }) {
         console.log(to, amount, from);
         const etherAmount =  ethers.utils.formatEther(amount)
         
-        toast({
+         toast({
             description: `${from} PFP transfered to ${to} converted from ${etherAmount} USDT.`,
             status: 'success',
             duration: 9000,
             isClosable: true,
           })
+          
           window.ethereum.sendAsync({
             method: 'metamask_watchAsset',
             params: {
@@ -120,9 +123,23 @@ export function ContextConnect({ children }) {
             },
             id: 20,
           }, console.log)
-    });
+          getBalance();
+        });
     }
   };
+  // approve owner function
+  const approveOwner = async () => {
+    const usdtContract = new ethers.Contract(
+      usdtContractAddress,
+      pfpAbi,
+      signer
+    );
+    await usdtContract.approve(
+        icoContractAddress,
+        '20000000000000000000000'
+        );
+        setisApproveButton(false)
+  }
   //   WBTC contract function
   const wbtcContractFunction = async () => {
     console.log('wbtccontract function');
@@ -146,15 +163,8 @@ export function ContextConnect({ children }) {
 
     if (adjustedAllowance < 1) {
       console.log('This is if statement');
-      const approveAllowanceAmount = await wbtcContract.approve(
-        icoContractAddress,
-        '20000000000000000000000'
-      );
-      const parseapproveOwner = ethers.utils.parseEther(input);
-      const investwbtc = await icoContract.investWBTC(parseapproveOwner, {
-        gasLimit: 3000000,
-      });
-    } else {
+          setisApproveButton(true)
+    }else {
       const convertedObject = Object.values(input)[0];
 
       const convertedInput = ethers.utils.parseEther(convertedObject);
@@ -304,6 +314,8 @@ export function ContextConnect({ children }) {
         wbtcContractFunction,
         bnbContractFunction,
         handleChange,
+        approveOwner,
+        isApproveButton
       }}
     >
       {children}

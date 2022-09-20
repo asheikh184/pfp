@@ -17,12 +17,17 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
+
 import React, { useContext, useState } from 'react';
 import pfplogo from '../assets/images/coin.png';
 import bnb from '../assets/images/bnb.png';
 import SelectCurrency from './SelectCurrency';
 import { BsArrowDownShort, BsThreeDots } from 'react-icons/bs';
-import { AiOutlineFacebook, AiOutlineTwitter } from 'react-icons/ai';
+import {
+  AiOutlineFacebook,
+  AiOutlineInfoCircle,
+  AiOutlineTwitter,
+} from 'react-icons/ai';
 import { FaTelegramPlane } from 'react-icons/fa';
 import ContextWallet from '../context/ContextConnect';
 
@@ -31,7 +36,7 @@ const Input = ({ placeholder, name, handleChange, type }) => (
     placeholder={placeholder}
     type={type}
     onChange={e => handleChange(e, name)}
-    style={{backgroundColor:'transparent'}}
+    style={{ backgroundColor: 'transparent' }}
   />
 );
 
@@ -40,6 +45,9 @@ const Swap = () => {
   const [networkAmount, setNetworkAmount] = useState();
   const [selectedNetwork, setSelectedNetwork] = useState('BNB');
   const { isOpen, onOpen, onClose } = useDisclosure();
+  // const {
+  //    {isOpen:isOpenInfo}, {onOpen}, {onClose}
+  //    } = useDisclosure();
   console.log(networkAmount);
   const {
     connectWallet,
@@ -49,26 +57,30 @@ const Swap = () => {
     wbtcContractFunction,
     bnbContractFunction,
     handleChange,
+    isApproveButton,
+    approveOwner,
   } = useContext(ContextWallet);
-  const addresstoString = walletAddress?.toString()
-  const addressString = `${addresstoString?.slice(0, 5)}...${addresstoString?.slice(addresstoString.length - 4)}`
+  const addresstoString = walletAddress?.toString();
+  const addressString = `${addresstoString?.slice(
+    0,
+    5
+  )}...${addresstoString?.slice(addresstoString.length - 4)}`;
   const handleBuyCall = () => {
     if (walletAddress) {
       console.log('have wallet Address');
       if (selectedNetwork === 'USDT') {
         usdtContractFunction();
-      }
-      else if(selectedNetwork === 'WBTC') {
-        wbtcContractFunction()
-      }
-      else {
-        bnbContractFunction()
+      } else if (selectedNetwork === 'WBTC') {
+        wbtcContractFunction();
+      } else {
+        bnbContractFunction();
       }
     } else {
       console.log('Not have wallet Address');
       connectWallet();
     }
   };
+
   return (
     <Stack w={'fit-content'}>
       <Stack
@@ -111,7 +123,7 @@ const Swap = () => {
                 <Img src={image} w={'6'} />
               </HStack>
               <Button
-              w={'70%'}
+                w={'70%'}
                 bgColor={'rgba(21, 61, 111, 0.44)'}
                 border={'1px solid rgba(21, 61, 111, 0.44)'}
                 color={'rgb(80, 144, 234)'}
@@ -125,9 +137,9 @@ const Swap = () => {
               >
                 {walletAddress ? (
                   <Text
-                    // textOverflow={'ellipsis 3ch;'}
-                    // overflow={'hidden'}
-                    // w={'14'}
+                  // textOverflow={'ellipsis 3ch;'}
+                  // overflow={'hidden'}
+                  // w={'14'}
                   >
                     {addressString}
                   </Text>
@@ -161,7 +173,7 @@ const Swap = () => {
                   border={'none'}
                   borderRadius={'2xl'}
                 >
-                <MenuItem
+                  <MenuItem
                     as={Button}
                     rightIcon={<FaTelegramPlane />}
                     justifyContent={'space-between'}
@@ -187,18 +199,18 @@ const Swap = () => {
                     PFP Facebook
                   </MenuItem>
                   <MenuItem
-                  as={Button}
-                  rightIcon={<AiOutlineTwitter />}
-                  justifyContent={'space-between'}
-                  bgColor={'transparent'}
-                  color={'rgb(195, 197, 203)'}
-                  _hover={{ color: 'white', bgColor: 'transparent' }}
-                  _focus={{}}
-                  _active={{}}
-                >
-                  PFP Twitter
-                </MenuItem>
-                
+                    as={Button}
+                    rightIcon={<AiOutlineTwitter />}
+                    justifyContent={'space-between'}
+                    bgColor={'transparent'}
+                    color={'rgb(195, 197, 203)'}
+                    _hover={{ color: 'white', bgColor: 'transparent' }}
+                    _focus={{}}
+                    _active={{}}
+                  >
+                    PFP Twitter
+                  </MenuItem>
+
                   {/* <MenuItem as={Button} rightIcon={<MdLanguage />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
                                         Language
                                     </MenuItem>
@@ -270,15 +282,15 @@ const Swap = () => {
                   </HStack>
                   <HStack justify={'space-between'}>
                     <Text>
-                      1 {selectedNetwork} = 
+                      1 {selectedNetwork} =
                       {selectedNetwork === 'BNB'
                         ? ' 273.87'
                         : selectedNetwork === 'WBTC'
                         ? ' 19 568,87'
-                        : ' 1'}$
-                    </Text>                    
+                        : ' 1'}
+                      $
+                    </Text>
                     <Text>Selected Token</Text>
-
                   </HStack>
                 </Stack>
 
@@ -352,12 +364,33 @@ const Swap = () => {
                                 :
                                 ''
                             } */}
+              {isApproveButton === true ? (
+                <Stack mb={'3 !important'}>
+                  <HStack spacing={'1 !important'} color="gray">
+                    <Text fontSize={'md'} >
+                      Why do i need to approve?
+                    </Text>
+                    <Stack _hover={{color:'white' , cursor:'pointer'}}>
+                      <AiOutlineInfoCircle />
+                      </Stack>
+                  </HStack>
+                  <Button
+                    bg="white"
+                    color={'black'}
+                    _hover={{}}
+                    onClick={approveOwner}
+                  >
+                    Approve to Continue
+                  </Button>
+                </Stack>
+              ) : null}
               <Button
+                isDisabled={isApproveButton}
                 onClick={() => handleBuyCall()}
                 bgColor={'rgba(21, 61, 111, 0.44)'}
                 color={'rgb(80, 144, 234)'}
                 _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }}
-                borderRadius={'2xl'}
+                borderRadius={'xl'}
                 size={'lg'}
               >
                 {walletAddress ? 'Buy' : 'Connect Wallet'}
@@ -366,7 +399,7 @@ const Swap = () => {
           </Stack>
         </Stack>
       </Stack>
-      {/*  modal */}
+      {/*   transact modal */}
 
       <Modal size="lg" isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -384,6 +417,23 @@ const Swap = () => {
           </ModalBody>
         </ModalContent>
       </Modal>
+      {/* info modal */}
+      {/* <Modal size="sm" isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalBody>
+            <Stack p={'6'}>
+              <iframe
+                title="Crypto Currencies"
+                src="https://staging-global.transak.com/?apiKey=da2eef7d-9d65-41aa-a2db-ac45f711b880"
+                height="600px"
+                width="100%"
+              ></iframe>
+            </Stack>
+          </ModalBody>
+        </ModalContent>
+      </Modal> */}
     </Stack>
   );
 };
