@@ -31,11 +31,13 @@ import {
 import { FaTelegramPlane } from 'react-icons/fa';
 import ContextWallet from '../context/ContextConnect';
 
-const Input = ({ placeholder, name, handleChange, type }) => (
+const Input = ({ placeholder, name,value, handleChange, type }) => (
   <input
+  value={value}
     placeholder={placeholder}
     type={type}
-    onChange={e => handleChange(e, name)}
+    onChange={e => {handleChange(e, name)
+    }}
     style={{ backgroundColor: 'transparent' }}
   />
 );
@@ -45,9 +47,11 @@ const Swap = () => {
   const [networkAmount, setNetworkAmount] = useState();
   const [selectedNetwork, setSelectedNetwork] = useState('BNB');
   const { isOpen, onOpen, onClose } = useDisclosure();
-  // const {
-  //    {isOpen:isOpenInfo}, {onOpen}, {onClose}
-  //    } = useDisclosure();
+  const {
+    isOpen: isOpenInfo,
+    onOpen: onOpenInfo,
+    onClose: onCloseInfo,
+  } = useDisclosure();
   console.log(networkAmount);
   const {
     connectWallet,
@@ -59,7 +63,11 @@ const Swap = () => {
     handleChange,
     isApproveButton,
     approveOwner,
+    isLoadingBuy,
+    setNetwork,
+    convertedToken
   } = useContext(ContextWallet);
+    
   const addresstoString = walletAddress?.toString();
   const addressString = `${addresstoString?.slice(
     0,
@@ -80,7 +88,7 @@ const Swap = () => {
       connectWallet();
     }
   };
-
+  
   return (
     <Stack w={'fit-content'}>
       <Stack
@@ -251,6 +259,7 @@ const Swap = () => {
               </HStack>
               <Stack spacing={'-3'}>
                 <Stack
+                  _hover={{ border: '1px solid gray !important' }}
                   bgColor={'#23242A'}
                   minH={'20'}
                   border={'none !important'}
@@ -277,6 +286,7 @@ const Swap = () => {
                       }}
                       setSelectedNetwork={network => {
                         setSelectedNetwork(network);
+                        setNetwork(network)
                       }}
                     />
                   </HStack>
@@ -315,6 +325,7 @@ const Swap = () => {
                 </Stack>
 
                 <Stack
+                  _hover={{ border: '1px solid gray !important' }}
                   bgColor={'#23242A'}
                   minH={'20'}
                   border={'none !important'}
@@ -326,9 +337,9 @@ const Swap = () => {
                   <HStack fontWeight={'bold'}>
                     <Input
                       isDisabled
-                      value={'0'}
                       placeholder={'Quantity'}
                       type="number"
+                      value={Number(convertedToken)}
                       variant={'unstyled'}
                     />
                     <HStack
@@ -367,12 +378,13 @@ const Swap = () => {
               {isApproveButton === true ? (
                 <Stack mb={'3 !important'}>
                   <HStack spacing={'1 !important'} color="gray">
-                    <Text fontSize={'md'} >
-                      Why do i need to approve?
-                    </Text>
-                    <Stack _hover={{color:'white' , cursor:'pointer'}}>
+                    <Text fontSize={'md'}>Why do i need to approve?</Text>
+                    <Stack
+                      onClick={onOpenInfo}
+                      _hover={{ color: 'white', cursor: 'pointer' }}
+                    >
                       <AiOutlineInfoCircle />
-                      </Stack>
+                    </Stack>
                   </HStack>
                   <Button
                     bg="white"
@@ -385,6 +397,8 @@ const Swap = () => {
                 </Stack>
               ) : null}
               <Button
+                loadingText="Buying"
+                isLoading={isLoadingBuy}
                 isDisabled={isApproveButton}
                 onClick={() => handleBuyCall()}
                 bgColor={'rgba(21, 61, 111, 0.44)'}
@@ -418,22 +432,22 @@ const Swap = () => {
         </ModalContent>
       </Modal>
       {/* info modal */}
-      {/* <Modal size="sm" isOpen={isOpen} onClose={onClose}>
+
+      <Modal size="sm" isOpen={isOpenInfo} onClose={onCloseInfo}>
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />
           <ModalBody>
             <Stack p={'6'}>
-              <iframe
-                title="Crypto Currencies"
-                src="https://staging-global.transak.com/?apiKey=da2eef7d-9d65-41aa-a2db-ac45f711b880"
-                height="600px"
-                width="100%"
-              ></iframe>
+              <Text>
+                Lorem ipsum is a placeholder text commonly used to demonstrate
+                the visual form of a document or a typeface without relying on
+                meaningful content.
+              </Text>
             </Stack>
           </ModalBody>
         </ModalContent>
-      </Modal> */}
+      </Modal>
     </Stack>
   );
 };
