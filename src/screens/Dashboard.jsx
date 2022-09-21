@@ -19,7 +19,7 @@ const Dashboard = () => {
     const addressString = `${addresstoString?.slice(0, 5)}...${addresstoString?.slice(addresstoString.length - 4)}`
     return (
         <>
-            <Stack bgColor={'#0b0c22'} p={'6'}>
+            <Stack bgColor={'#0b0c22'} p={{base:'2',sm:'6'}}>
                 <Stack px={'8'}>
                     <Button
                         as={Link}
@@ -37,7 +37,7 @@ const Dashboard = () => {
                 </Stack>
 
 
-                <Stack spacing={'4'} direction={{ base: 'column-reverse', lg: 'row' }} alignItems={{ base: 'center', lg: 'inherit' }} py={'8'} px={{base:"8",md:"0",xl:"8"}} justify={'space-between'}>
+                <Stack spacing={'4'} direction={{ base: 'column-reverse', lg: 'row' }} alignItems={{ base: 'center', lg: 'inherit' }} py={'8'} px={{base:"2",md:"0",xl:"8"}} justify={'space-between'}>
                     {/* Balance Cards */}
                     <Grid templateColumns={{ lg: 'repeat(2, 1fr)' }} gap={5} w={{ base: 'full', sm: 'full' }}>
                         <PFPBalanceCard img={card1} coin={pfp} balance={pfpBalance} address={addressString} network={'PFP'} />
@@ -50,7 +50,7 @@ const Dashboard = () => {
                 </Stack>
 
 
-                <Stack align={'center'} w={'full'} p={'6'}>
+                <Stack align={'center'} w={'full'} p={{base:'2',sm:'6'}}>
                     <iframe title="Crypto Currencies" src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=100&pref_coin_id=1505&graph=yes" height="700px" width="100%"></iframe>
                 </Stack>
 

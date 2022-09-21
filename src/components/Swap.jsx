@@ -39,7 +39,7 @@ const CurrencyInput = ({ placeholder, name, value, handleChange, type }) => (
     onChange={e => {
       handleChange(e, name);
     }}
-    style={{ backgroundColor: 'transparent',fontSize:'1.5rem' }}
+    style={{ backgroundColor: 'transparent', fontSize: '1.5rem', width: '100%', outline: 'none' }}
   />
 );
 
@@ -240,6 +240,7 @@ const Swap = () => {
               </Menu>
             </HStack>
           </Stack>
+
           <Stack px={'2'}>
             <Button
               // as={Link}
@@ -273,7 +274,7 @@ const Swap = () => {
                   _hover={{ border: '1px solid gray !important' }}
                   bgColor={'#23242A'}
                   minH={'20'}
-                  border={'none !important'}
+                  border={'1px solid #23242A !important'}
                   borderRadius={'2xl'}
                   color={'#B2B9D2'}
                   px={'6'}
@@ -308,8 +309,8 @@ const Swap = () => {
                       {selectedNetwork === 'BNB'
                         ? ' 273.87'
                         : selectedNetwork === 'WBTC'
-                        ? ' 19 568,87'
-                        : ' 1'}
+                          ? ' 19 568,87'
+                          : ' 1'}
                       $
                     </Text>
                     <Text>Selected Token</Text>
@@ -340,7 +341,7 @@ const Swap = () => {
                   _hover={{ border: '1px solid gray !important' }}
                   bgColor={'#23242A'}
                   minH={'20'}
-                  border={'none !important'}
+                  border={'1px solid #23242A !important'}
                   borderRadius={'2xl'}
                   color={'#B2B9D2'}
                   px={'6'}

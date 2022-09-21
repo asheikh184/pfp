@@ -2,11 +2,11 @@ import { HStack, Img, Stack, Text } from '@chakra-ui/react'
 import React, { useContext } from 'react'
 import ContextWallet from '../context/ContextConnect'
 
-const BalanceCard = ({ img, balance, address, network,coin }) => {
-    const { walletAddress} = useContext(ContextWallet)
+const BalanceCard = ({ img, balance, address, network, coin }) => {
+    const { walletAddress } = useContext(ContextWallet)
     return (
         <>
-            <Stack _hover={{cursor:'pointer',transform:'Scale(1.05)',transition:'0.8s'}} bgImage={img} justify={'space-between'} bgPos={'center'} bgSize={'cover'} h={'56'} w={{ base: 'full', xl: '100%', '2xl': '60%' }} borderRadius={'lg'} p={'8'} color={'white'} maxW={'100%'}>
+            <Stack _hover={{ cursor: 'pointer', transform: 'Scale(1.05)', transition: '0.8s' }} bgImage={img} justify={'space-between'} bgPos={'center'} bgSize={'cover'} h={'56'} w={{ base: 'full', xl: '100%', '2xl': '80%' }} borderRadius={'lg'} p={'8'} color={'white'} maxW={'100%'}>
                 <Stack spacing={'-1'}>
                     <Text>{network} Balance</Text>
                     <HStack justify={'space-between'}>
