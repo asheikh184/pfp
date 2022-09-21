@@ -21,10 +21,12 @@ export function ContextConnect({ children }) {
   const [pfpBalance, setpfpBalance] = useState();
   const [usdtBalance, setusdtBalance] = useState();
   const [input, setInput] = useState();
+  console.log("🚀 ~ file: ContextConnect.jsx ~ line 24 ~ ContextConnect ~ input", input)
   const [inputPfp, setinputPfp] = useState();
   const [isApproveButton, setisApproveButton] = useState(false);
   const [isLoadingBuy, setIsLoadingBuy] = useState(false);
   const [network, setNetwork] = useState('BNB');
+  console.log("🚀 ~ file: ContextConnect.jsx ~ line 28 ~ ContextConnect ~ network", network)
   const [convertedToken, setconvertedToken] = useState(0);
   const [convertedCurrency, setconvertedCurrency] = useState(0);
 
@@ -32,20 +34,16 @@ export function ContextConnect({ children }) {
   const signer = provider.getSigner();
 
   const handleChange = (e, name) => {
-    console.log(
-      '🚀 ~ file: ContextConnect.jsx ~ line 35 ~ handleChange ~ name',
-      name
-    );
-    if (name === 'quantity') {
-      setinputPfp(prevState => ({ ...prevState, [name]: e.target.value }));
-    } else {
+    if (name === 'price')
+    {
       setInput(prevState => ({ ...prevState, [name]: e.target.value }));
     }
+    else {
+      setinputPfp(prevState => ({ ...prevState, [name]: e.target.value }));
+
+    }
   };
-  console.log(
-    '🚀 ~ file: ContextConnect.jsx ~ line 42 ~ ContextConnect ~ inputPfp',
-    inputPfp
-  );
+
 
   // Methode to connect wallet
   const connectWallet = async () => {
@@ -143,7 +141,7 @@ export function ContextConnect({ children }) {
       adjustedAllowance
     );
 
-    if (adjustedAllowance < 1) {
+    if (adjustedAllowance > 1) {
       console.log('This is if statement');
       setisApproveButton(true);
     } else {
@@ -366,23 +364,30 @@ export function ContextConnect({ children }) {
   // convert usdt to pfp token
 
   const usdtToPfp = async () => {
+    console.log('usdttopfp fun')
     const convertedObject = Object.values(input)[0];
     const convertedInput = ethers.utils.parseEther(convertedObject);
     const icoContract = new ethers.Contract(icoContractAddress, icoAbi, signer);
-    let tokens = await icoContract.tokensAgainstUSDT(convertedInput);
-    if (network === 'USTD') {
-      tokens = await icoContract.tokensAgainstUSDT(convertedInput);
+    if (network === 'BNB') {
+      const tokens = await icoContract.tokensAgainstbnb(convertedInput);
+      const usdtToPfpformat = ethers.utils.formatEther(tokens);
+      console.log("🚀 ~ file: ContextConnect.jsx ~ line 363 ~ usdtToPfp ~ usdtToPfpformat", usdtToPfpformat)
+      const usdtnmbr = Number(usdtToPfpformat);
+      setconvertedToken(usdtnmbr.toFixed(4));
+    } else if (network === 'USDT') {
+      const tokens = await icoContract.tokensAgainstUSDT(convertedInput);
+      const usdtToPfpformat = ethers.utils.formatEther(tokens);
+      console.log("🚀 ~ file: ContextConnect.jsx ~ line 368 ~ usdtToPfp ~ usdtToPfpformat", usdtToPfpformat)
+      const usdtnmbr = Number(usdtToPfpformat);
+      setconvertedToken(usdtnmbr.toFixed(4));
     } else if (network === 'WBTC') {
-      tokens = await icoContract.tokensAgainstUSDT(convertedInput);
+     const tokens = await icoContract.tokensAgainstwbtc(convertedInput);
+      const usdtToPfpformat = ethers.utils.formatEther(tokens);
+      console.log("🚀 ~ file: ContextConnect.jsx ~ line 373 ~ usdtToPfp ~ usdtToPfpformat", usdtToPfpformat)
+
+      const usdtnmbr = Number(usdtToPfpformat);
+      setconvertedToken(usdtnmbr.toFixed(4));
     }
-
-    const usdtToPfpformat = ethers.utils.formatEther(tokens);
-
-    console.log(
-      '🚀 ~ file: ContextConnect.jsx ~ line 363 ~ usdtToPfp ~ usdtToPfpformat',
-      usdtToPfpformat
-    );
-    setconvertedToken(usdtToPfpformat);
   };
   if (input) {
     usdtToPfp();
@@ -391,11 +396,11 @@ export function ContextConnect({ children }) {
     const convertedObject = Object.values(inputPfp)[0];
     const convertedInput = ethers.utils.parseEther(convertedObject);
     const icoContract = new ethers.Contract(icoContractAddress, icoAbi, signer);
-    let currency = await icoContract.tokensAgainstUSDT(convertedInput);
-    if (network === 'USTD') {
-      currency = await icoContract.tokensAgainstUSDT(convertedInput);
+    let currency = await icoContract.bnbAgainstTokens(convertedInput);
+    if (network === 'USDT') {
+      currency = await icoContract.usdtAgainstTokens(convertedInput);
     } else if (network === 'WBTC') {
-      currency = await icoContract.tokensAgainstUSDT(convertedInput);
+      currency = await icoContract.wbtcAgainstTokens(convertedInput);
     }
 
     const pfpformat = ethers.utils.formatEther(currency);
@@ -404,30 +409,33 @@ export function ContextConnect({ children }) {
       pfpformat
     );
 
-    setconvertedCurrency(pfpformat);
+    setconvertedCurrency(pfpformat.toFixed(4));
   };
   if (inputPfp) {
     pfoToCurrency();
   }
- 
-  // const fetchUsdtMarketValue = async () => {
-  //   let response = await axios.get(
-  //     'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=USD',
-  //     {
-  //       headers: {
-  //         'X-CMC_PRO_API_KEY': 'f9ee05ea-6612-4b59-8d6d-15d8cd1909a8',
-  //       },
-  //     }
-  //   );
-  //   let price = response.data.data[network].quote.USD.price;
-  //   console.log(
-  //     '🚀 ~ file: ContextConnect.jsx ~ line 414 ~ fetchUsdtMarketValue ~ price',
-  //     price
-  //   );
-  // };
-  // if (network === 'USDT') {
-  //   fetchUsdtMarketValue();
-  // }
+
+  const fetchUsdtMarketValue = async () => {
+    let response;
+    try {
+      response = await axios.get(
+        `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${network}`,
+        {
+          headers: {
+            "X-CMC_PRO_API_KEY": "f9ee05ea-6612-4b59-8d6d-15d8cd1909a8",
+          },
+        }
+      );
+      let price = response?.data?.data[network].quote.USD.price;
+      console.log("🚀 ~ file: ContextConnect.jsx ~ line 430 ~ fetchUsdtMarketValue ~ price", price)
+      // resolve(price);
+    } catch (ex) {
+      // resolve(ex);
+    }
+  };
+  if (network === 'USDT') {
+    fetchUsdtMarketValue();
+  }
   useEffect(() => {
     getBalance();
     pfpContractFunction();

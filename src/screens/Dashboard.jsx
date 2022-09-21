@@ -37,7 +37,7 @@ const Dashboard = () => {
                 </Stack>
 
 
-                <Stack spacing={'4'} direction={{ base: 'column-reverse', lg: 'row' }} alignItems={{ base: 'center', lg: 'inherit' }} p={'8'} justify={'space-between'}>
+                <Stack spacing={'4'} direction={{ base: 'column-reverse', lg: 'row' }} alignItems={{ base: 'center', lg: 'inherit' }} py={'8'} px={{base:"8",md:"0",xl:"8"}} justify={'space-between'}>
                     {/* Balance Cards */}
                     <Grid templateColumns={{ lg: 'repeat(2, 1fr)' }} gap={5} w={{ base: 'full', sm: 'full' }}>
                         <PFPBalanceCard img={card1} coin={pfp} balance={pfpBalance} address={addressString} network={'PFP'} />

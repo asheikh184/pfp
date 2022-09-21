@@ -31,16 +31,18 @@ import {
 import { FaTelegramPlane } from 'react-icons/fa';
 import ContextWallet from '../context/ContextConnect';
 
-const Input = ({ placeholder, name,value, handleChange, type }) => (
+const CurrencyInput = ({ placeholder, name, value, handleChange, type }) => (
   <input
-  value={value}
+    defaultValue={value || ''}
     placeholder={placeholder}
     type={type}
-    onChange={e => {handleChange(e, name)
+    onChange={e => {
+      handleChange(e, name);
     }}
-    style={{ backgroundColor: 'transparent' }}
+    style={{ backgroundColor: 'transparent',fontSize:'1.5rem' }}
   />
 );
+
 
 const Swap = () => {
   const [image, setImage] = useState(bnb);
@@ -65,9 +67,18 @@ const Swap = () => {
     approveOwner,
     isLoadingBuy,
     setNetwork,
-    convertedToken
+    convertedCurrency,
+    convertedToken,
   } = useContext(ContextWallet);
-    
+  console.log(
+    '🚀 ~ file: Swap.jsx ~ line 83 ~ Swap ~ convertedToken',
+    convertedToken
+  );
+  console.log(
+    '🚀 ~ file: Swap.jsx ~ line 83 ~ Swap ~ convertedCurrency',
+    convertedCurrency
+  );
+
   const addresstoString = walletAddress?.toString();
   const addressString = `${addresstoString?.slice(
     0,
@@ -88,9 +99,9 @@ const Swap = () => {
       connectWallet();
     }
   };
-  
+
   return (
-    <Stack w={'fit-content'}>
+    <Stack>
       <Stack
         bgColor={'#23242A'}
         h={'fit-content'}
@@ -269,8 +280,9 @@ const Swap = () => {
                   py={'2'}
                 >
                   <HStack fontWeight={'bold'}>
-                    <Input
-                      placeholder="Price"
+                    <CurrencyInput
+                      value={convertedCurrency}
+                      placeholder="0.0"
                       name="price"
                       type="number"
                       handleChange={handleChange}
@@ -286,7 +298,7 @@ const Swap = () => {
                       }}
                       setSelectedNetwork={network => {
                         setSelectedNetwork(network);
-                        setNetwork(network)
+                        setNetwork(network);
                       }}
                     />
                   </HStack>
@@ -335,12 +347,12 @@ const Swap = () => {
                   py={'2'}
                 >
                   <HStack fontWeight={'bold'}>
-                    <Input
-                      isDisabled
-                      placeholder={'Quantity'}
+                    <CurrencyInput
+                      placeholder={'quantity'}
                       type="number"
                       value={Number(convertedToken)}
                       variant={'unstyled'}
+                      handleChange={handleChange}
                     />
                     <HStack
                       as={Button}

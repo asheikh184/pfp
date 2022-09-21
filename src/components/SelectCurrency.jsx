@@ -24,9 +24,9 @@ export default function App({ setStateOfParent, setSelectedNetwork }) {
                 _active={{ bgColor: 'rgb(44, 47, 54)' }}
                 w={'7rem'}
             >
-                <HStack>
+                <HStack px='1'>
                     <Img src={option} boxSize={'6'} />
-                    <Text color={'#B2B9D2'}>{optionName}</Text>
+                    <Text fontSize={'sm'} color={'#B2B9D2'}>{optionName}</Text>
                 </HStack>
             </MenuButton>
             <MenuList borderRadius={'2xl'} bgColor={'#191B1F'} p={'4'} color={'#B2B9D2'} border={'none'}>
