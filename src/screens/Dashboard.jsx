@@ -27,9 +27,9 @@ const Dashboard = () => {
                         px={'2'}
                         py={'2'}
                         bgColor={'#23242A'}
-                        border={'1px solid rgba(21, 61, 111, 0.44)'}
-                        color={'rgb(80, 144, 234)'}
-                        _hover={{ bgColor: '#23242A' }}
+                        border={'1px solid #fba826'}
+                        color={'white'}
+                        _hover={{ bgColor: '#e89a03' }}
                         borderRadius={'2xl'}
                     >
                         Back To Hompage

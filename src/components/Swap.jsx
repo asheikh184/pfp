@@ -143,13 +143,15 @@ const Swap = () => {
               </HStack>
               <Button
                 w={'70%'}
-                bgColor={'rgba(21, 61, 111, 0.44)'}
-                border={'1px solid rgba(21, 61, 111, 0.44)'}
-                color={'rgb(80, 144, 234)'}
+                // bgColor={'rgba(21, 61, 111, 0.44)'}
+                // color={'rgb(80, 144, 234)'}
+                bgColor={"#e89a03"}
+                color={'white'}
                 borderRadius={'2xl'}
+                border={'1px solid #fba826'}
                 _hover={{
-                  border: '1px solid rgba(49, 95, 154, 0.44)',
-                  color: 'rgb(57, 130, 231)',
+                  color: 'white',
+                  bgColor: '#e89a03' 
                 }}
                 onClick={() => connectWallet()}
                 size={{ base: 'sm', lg: 'md' }}
@@ -168,12 +170,13 @@ const Swap = () => {
                     overflow={'hidden'}
                     w={'fit-content'}
                     fontSize={'xs'}
+                    color={'white'}
                   >
                     Connect Wallet
                   </Text>
                 )}
               </Button>
-              <Menu>
+              {/* <Menu>
                 <MenuButton
                   as={IconButton}
                   aria-label="Options"
@@ -182,8 +185,8 @@ const Swap = () => {
                   borderRadius={'2xl'}
                   bgColor={'#191B1F'}
                   color={'white'}
-                  border={'none'}
-                  _hover={{ border: '1px solid rgb(64, 68, 79)' }}
+                  border={'1px solid #fba826'}
+                  _hover={{ bgColor: '#e89a03' }}
                   _focus={{}}
                   _active={{}}
                 />
@@ -236,8 +239,8 @@ const Swap = () => {
                                     <MenuItem as={Button} rightIcon={<CgNotes />} justifyContent={'space-between'} bgColor={'transparent'} color={'rgb(195, 197, 203)'} _hover={{ color: 'white', bgColor: 'transparent' }} _focus={{}} _active={{}}>
                                         Legal and Privacy
                                 </MenuItem> */}
-                </MenuList>
-              </Menu>
+                 {/*  </MenuList>
+              </Menu> */}
             </HStack>
           </Stack>
 
@@ -248,9 +251,13 @@ const Swap = () => {
               onClick={onOpen}
               px={'2'}
               py={'2'}
-              bgColor={'rgba(21, 61, 111, 0.44)'}
-              color={'rgb(80, 144, 234)'}
-              _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }}
+              bgColor={'#e89a03'}
+
+              // color={'rgb(80, 144, 234)'}
+              color={'white'}
+              _hover={{ bgColor: '#e89a03' }}
+              border={'1px solid #fba826'}
+              // _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }}
               borderRadius={'2xl'}
             >
               Import BNB From Card
@@ -271,7 +278,7 @@ const Swap = () => {
               </HStack>
               <Stack spacing={'-3'}>
                 <Stack
-                  _hover={{ border: '1px solid gray !important' }}
+                  _hover={{ border: '1px solid #fba826 !important' }}
                   bgColor={'#23242A'}
                   minH={'20'}
                   border={'1px solid #23242A !important'}
@@ -332,13 +339,14 @@ const Swap = () => {
                     alignSelf={'center'}
                     color={'white'}
                     position={'absolute'}
+                    _hover={{ bgColor: 'rgb(64, 68, 79)' }}
                   >
                     <BsArrowDownShort fontSize={'1.9rem'} />
                   </Stack>
                 </Stack>
 
                 <Stack
-                  _hover={{ border: '1px solid gray !important' }}
+                  _hover={{ border: '1px solid #fba826 !important' }}
                   bgColor={'#23242A'}
                   minH={'20'}
                   border={'1px solid #23242A !important'}
@@ -349,7 +357,7 @@ const Swap = () => {
                 >
                   <HStack fontWeight={'bold'}>
                     <CurrencyInput
-                      placeholder={'quantity'}
+                      placeholder={'0.0'}
                       type="number"
                       value={Number(convertedToken)}
                       variant={'unstyled'}
@@ -370,7 +378,7 @@ const Swap = () => {
                     </HStack>
                   </HStack>
                   <HStack justify={'space-between'}>
-                    <Text>(In process)</Text>
+                    {/* <Text>(In process)</Text> */}
                     {/*<Text>Balance</Text>*/}
                   </HStack>
                 </Stack>
@@ -414,9 +422,11 @@ const Swap = () => {
                 isLoading={isLoadingBuy}
                 isDisabled={isApproveButton}
                 onClick={() => handleBuyCall()}
-                bgColor={'rgba(21, 61, 111, 0.44)'}
-                color={'rgb(80, 144, 234)'}
-                _hover={{ bgColor: 'rgba(19, 54, 98, 0.44)' }}
+                bgColor={'#e89a03'}
+                border={'1px solid #fba826'}
+                color={'white'}
+                // color={'rgb(80, 144, 234)'}
+                _hover={{ bgColor: '#e89a03' }}
                 borderRadius={'xl'}
                 size={'lg'}
               >

@@ -37,7 +37,7 @@ export default function App({ setStateOfParent, setSelectedNetwork }) {
                     setOption(bnb)
                     setOptionName('BNB')
                 }}>
-                    <HStack justify={'space-between'} bgColor={'#212429'} w={'full'} p={'2'} borderRadius={'2xl'}>
+                    <HStack justify={'space-between'} bgColor={'#212429'} w={'full'} p={'2'} borderRadius={'2xl'} _hover={{ bgColor: 'rgb(64, 68, 79)' }}>
                         <HStack>
                             <Img src={bnb} boxSize={'4'} />
                             <Text>BNB</Text>
@@ -50,7 +50,7 @@ export default function App({ setStateOfParent, setSelectedNetwork }) {
                     setOption(wbtc)
                     setOptionName('WBTC')
                 }}>
-                    <HStack justify={'space-between'} bgColor={'#212429'} w={'full'} p={'2'} borderRadius={'2xl'}>
+                    <HStack justify={'space-between'} bgColor={'#212429'} w={'full'} p={'2'} borderRadius={'2xl'} _hover={{ bgColor: 'rgb(64, 68, 79)' }}>
                         <HStack>
                             <Img src={wbtc} boxSize={'4'} />
                             <Text>WBTC</Text>
@@ -63,7 +63,7 @@ export default function App({ setStateOfParent, setSelectedNetwork }) {
                     setOption(usdt)
                     setOptionName('USDT')
                 }}>
-                    <HStack justify={'space-between'} bgColor={'#212429'} w={'full'} p={'2'} borderRadius={'2xl'}>
+                    <HStack justify={'space-between'} bgColor={'#212429'} w={'full'} p={'2'} borderRadius={'2xl'} _hover={{ bgColor: 'rgb(64, 68, 79)' }}>
                         <HStack>
                             <Img src={usdt} boxSize={'4'} />
                             <Text>USDT</Text>
