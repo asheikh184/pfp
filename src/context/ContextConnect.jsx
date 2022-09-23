@@ -141,7 +141,7 @@ export function ContextConnect({ children }) {
       adjustedAllowance
     );
 
-    if (adjustedAllowance > 1) {
+    if (adjustedAllowance < 1) {
       console.log('This is if statement');
       setisApproveButton(true);
     } else {
